@@ -2,31 +2,27 @@ package string;
 
 import java.util.Scanner;
 
+//문자열, 문자받고
+//char로변경
+//둘다 대문자로
+//돌면서 비교
 public class Ex1 {
-
-	public static void main(String[] args) {
-		Ex1 T = new Ex1();
-		Scanner kb = new Scanner(System.in);
-		String str = kb.next();
-		char c=kb.next().charAt(0);
-		System.out.println(T.solution(str,c));
-	}
-
-	private int solution(String str, char c) {
-		int answer=0;
-		str=str.toUpperCase();
-		c=Character.toUpperCase(c);
-//		for(int i =0; i<str.length();i++) {
-//		if(str.charAt(i)==c) {
-//			answer++;
-//		}
-//	}
-		for(char x: str.toCharArray()) {
-			if(x==c) {
-				answer++;
+	public static int solution(String str, char ch) {
+		int count = 0;
+		str = str.toUpperCase();
+		ch = Character.toUpperCase(ch);
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) == ch) {
+				count++;
 			}
 		}
-		return answer;
+		return count;
 	}
 
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String str = sc.next();
+		char ch = sc.next().charAt(0);
+		System.out.println(solution(str, ch));
+	}
 }
