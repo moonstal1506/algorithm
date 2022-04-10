@@ -1,33 +1,23 @@
 package string;
 
 import java.util.Scanner;
-//Ex2
+//2.대소문자 변환 o
 public class Ex2 {
-	private String solution(String str) {
-		String answer="";
-		for(char ch:str.toCharArray()) {
-//			if(Character.isLowerCase(ch)) {
-//				answer+=Character.toUpperCase(ch);
-//			}else {
-//				answer+=Character.toLowerCase(ch);
-//			}
-			
-			if('a'<=ch&&ch<='z') {
-				answer+=Character.toUpperCase(ch);
+	public static String solution(String str) {
+		String a="";
+		for(char c:str.toCharArray()) {
+			if(Character.isUpperCase(c)) {
+				a+=Character.toLowerCase(c);
 			}else {
-				answer+=Character.toLowerCase(ch);
+				a+=Character.toUpperCase(c);
 			}
 		}
-		return answer;
+		return a;
 	}
 
 	public static void main(String[] args) {
-		Ex2 T = new Ex2();
-		Scanner kb = new Scanner(System.in);
-		String str = kb.next();
-		System.out.println(T.solution(str));
+		Scanner sc = new Scanner(System.in);
+		String str = sc.next();
+		System.out.println(solution(str));
 	}
-
-	
-
 }
