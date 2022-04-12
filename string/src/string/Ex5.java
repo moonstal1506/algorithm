@@ -4,7 +4,6 @@ import java.util.Scanner;
 //5. 특정 문자 뒤집기
 public class Ex5 {
 
-
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String str = sc.next();
@@ -19,10 +18,10 @@ public class Ex5 {
 				char tmp=ch[lt];
 				ch[lt]=ch[rt];
 				ch[rt]=tmp;
+				lt++;
+				rt--;
 			}
 		}
 		System.out.println(ch);
-		
 	}
-
 }
