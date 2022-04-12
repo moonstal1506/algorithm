@@ -1,33 +1,27 @@
 package string;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-
+//5. 특정 문자 뒤집기
 public class Ex5 {
-	private static String solution(String str) {
-		String answer;
-		char[] s= str.toCharArray();
-		int lt=0,rt=str.length()-1;
-		while(lt<rt) {
-			if(!Character.isAlphabetic(s[lt])) lt++;
-			else if(!Character.isAlphabetic(s[rt])) rt--;
-			else {
-				char tmp = s[lt];
-				s[lt]=s[rt];
-				s[rt]=tmp;
-				lt++;
-				rt--;
-			}
-		}
-		answer=String.valueOf(s);
-		return answer;
-	}
+
 
 	public static void main(String[] args) {
-		Scanner kb = new Scanner(System.in);
-		String str = kb.next();
-		
-			System.out.println(solution(str));
+		Scanner sc = new Scanner(System.in);
+		String str = sc.next();
+		char[] ch=str.toCharArray();
+		int lt=0,rt=ch.length-1;
+		while(lt<rt) {
+			if(!Character.isAlphabetic(ch[lt])) {
+				lt++;
+			}else if(!Character.isAlphabetic(ch[rt])) {
+				rt--;
+			}else {
+				char tmp=ch[lt];
+				ch[lt]=ch[rt];
+				ch[rt]=tmp;
+			}
+		}
+		System.out.println(ch);
 		
 	}
 
