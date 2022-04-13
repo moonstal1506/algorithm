@@ -1,23 +1,18 @@
 package string;
 
 import java.util.*;
-class Ex9 {	
-	public static int solution(String s){
-		//int answer=0;
-		String answer="";
-		for(char x : s.toCharArray()){
-			//if(x>=48 && x<=57) answer=answer*10+(x-48);
-			/*if(Character.isDigit(x)){
-				answer=answer*10+ Character.getNumericValue(x);
-			}*/
-			if(Character.isDigit(x)) answer+=x;
-		}
-		return Integer.parseInt(answer);
-	}
 
+//9.숫자만 추출
+class Ex9 {	
 	public static void main(String[] args){
-		Scanner kb = new Scanner(System.in);
-		String str=kb.next();
-		System.out.print(solution(str));
+		Scanner sc = new Scanner(System.in);
+		String str=sc.next();
+		int answer=0;
+		for(char c: str.toCharArray()) {
+			if('0'<=c&&c<='9') {
+				answer=answer*10+(c-'0');
+			}
+		}
+		System.out.println(answer);
 	}
 }
