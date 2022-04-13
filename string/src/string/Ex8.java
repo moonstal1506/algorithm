@@ -1,23 +1,18 @@
 package string;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
+//8.유효한 팰린드롬
 public class Ex8 {
-	private static String solution(String str) {
-
-		String answer="NO";
-		str= str.toUpperCase().replaceAll("[^A-Z]", "");
-		String tmp = new StringBuilder(str).reverse().toString();
-		if(tmp.equalsIgnoreCase(str)) return "YES";
-		return answer;
-	}
-
 	public static void main(String[] args) {
-		Scanner kb = new Scanner(System.in);
-		String str = kb.nextLine();
-		System.out.println(solution(str));
-
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		String answer= "NO";
+		str=str.toUpperCase().replaceAll("[^A-Z]", "");
+		if(str.equals(new StringBuilder(str).reverse().toString())) {
+			answer="YES";
+		}
+		System.out.println(answer);
 	}
 
 }

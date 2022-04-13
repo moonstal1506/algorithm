@@ -1,7 +1,7 @@
 package string;
 
 import java.util.Scanner;
-
+//7.회문 문자열 o
 public class Ex7 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
