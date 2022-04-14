@@ -2,38 +2,29 @@
 package string;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-//11. ¹®ÀÚ¿­¾ĞÃà
-//answer ºó¹®ÀÚ¿­ ÃÊ±âÈ­
-//¹®ÀÚ¿­ µÚ¿¡ °ø¹éÃß°¡
-//cnt 1·Î ÃÊ±âÈ­
-//¹İº¹ ±æÀÌ-1±îÁö
-//µÚ¿¡ ¹®ÀÚ°¡ °°À¸¸é cntÁõ°¡
-//´Ù¸£¸é answer¿¡ ¹®ÀÚÃß°¡
-//cnt°¡ 1º¸´Ù Å©¸é answer¿¡ cntÃß°¡
-//cnt1·Î ÃÊ±âÈ­
+//11. ë¬¸ìì—´ ì••ì¶•
 public class Ex11 {
-	private static String solution(String s) {
-
-		String answer = "";
-		 s=s+" ";
-		 int cnt =1;
-		 for(int i=0;i<s.length()-1;i++) {
-			 if(s.charAt(i)==s.charAt(i+1)) cnt++;
-			 else {
-				 answer+=s.charAt(i);
-				 if(cnt>1) answer+=String.valueOf(cnt);
-				 cnt=1;
-			 }
-		 }
-		return answer;
-	}
 
 	public static void main(String[] args) {
-		Scanner kb = new Scanner(System.in);
-		String s = kb.next();
-		System.out.print(solution(s));
+		Scanner sc = new Scanner(System.in);
+		String s = sc.next()+" ";
+		int count=1;
+		String answer="";
+		for(int i=0;i<s.length()-1;i++) {
+			if(s.charAt(i)==s.charAt(i+1)) {
+				count++;
+			}else {
+				answer+=s.charAt(i);
+				if(count!=1) {
+					answer+=String.valueOf(count);
+				}
+				count=1;
+			}
+		}
+		System.out.println(answer);
 	}
 
 }
