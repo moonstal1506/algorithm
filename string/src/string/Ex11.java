@@ -1,8 +1,6 @@
 
 package string;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 //11. 문자열 압축

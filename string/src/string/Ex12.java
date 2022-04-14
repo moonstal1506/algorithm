@@ -1,32 +1,19 @@
 package string;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-//12.
-//answer ÃÊ±âÈ­
-//¹İº¹ n¹ø
-//¹®ÀÚ7±îÁö ÀÚ¸£°í replace·Î º¯°æ
-//2Áø¼ö·Î º¯È¯
-//char·Î Çüº¯È¯ answer¿¡ ´ã±â
-//¾Õ¿¡7°³ Àß¶ó³»±â
+//12.ì•”í˜¸
 public class Ex12 {
-	private static String solution(int n, String s) {
-		String answer = "";
-		for(int i=0;i<n;i++) {
-			String tmp= s.substring(0, 7).replace('#', '1').replace('*', '0');
-			int num = Integer.parseInt(tmp,2);
-			answer+=(char)num;
-			s=s.substring(7);
-		}
-		return answer;
-	}
-
 	public static void main(String[] args) {
-		Scanner kb = new Scanner(System.in);
-		int n = kb.nextInt();
-		String s= kb.next();
-		System.out.print(solution(n,s));
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		String s= sc.next();
+		String answer="";
+		for(int i=0;i<n;i++) {
+			String a=s.substring(0, 7).replace("#", "1").replace("*","0");
+			answer+=(char)Integer.parseInt(a,2);
+			s=s.substring(7); 
+		}
+		System.out.println(answer);
 	}
-
 }
