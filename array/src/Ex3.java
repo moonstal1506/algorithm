@@ -4,39 +4,27 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//3. °¡À§¹ÙÀ§º¸
-//°³¼ö¹Þ¾Æ a,b¹è¿­»ý¼º
-//¹è¿­¿¡ ´ã¾Æ
-//°³¼ö ¹è¿­ ³Ñ°Ü
-//answer
-//¹Ýº¹¹®À¸·Î ºñ±³ a°¡ ÀÌ±æ°æ¿ì¿Ü¿¡´Â b
+//3. ê°€ìœ„ ë°”ìœ„ ë³´
 public class Ex3 {
-	private static String solution(int n, int[] a,int[] b) {
-		String answer="";
-		for(int i=0;i<n;i++) {
-			if(a[i]==b[i]) answer+="D";
-			else if(a[i]==1&&b[i]==3) answer+="A";
-			else if(a[i]==2&&b[i]==1) answer+="A";
-			else if(a[i]==3&&b[i]==2) answer+="A";
-			else answer+="B";
-		}
-		return answer;
-	}
- 
 	public static void main(String[] args) {
-		Scanner kb = new Scanner(System.in);
-		int n = kb.nextInt();
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
 		int[] a= new int[n];
 		int[] b= new int[n];
 		for(int i=0;i<n;i++) {
-			a[i]=kb.nextInt();
+			a[i]=sc.nextInt();
 		}
 		for(int i=0;i<n;i++) {
-			b[i]=kb.nextInt();
+			b[i]=sc.nextInt();
 		}
-		for(char x:solution(n,a,b).toCharArray() )
-			System.out.println(x);
-		
+		for(int i=0;i<n;i++) {
+			if(a[i]-b[i]==0) {
+				System.out.println("D");
+			}else if(a[i]-b[i]==-2||a[i]-b[i]==1) {
+				System.out.println("A");
+			}else {
+				System.out.println("B");
+			}
+		}
 	}
-
 }
