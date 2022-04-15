@@ -4,35 +4,27 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//1. Å«¼öÃâ·ÂÇÏ±â
-//Á¤¼öÀÔ·Â¹Ş¾Æ ¹è¿­»ı¼º
-//¹İº¹¹®À¸·Î ¼ö ¹è¿­¿¡ ´ã¾Æ
-//¼Ö·ç¼Ç¿¡ ³Ñ°Ü
-//¾î·¹ÀÌ¸®½ºÆ® ¸¸µé¾î 0¹øÂ° answer¿¡ ´ã°í
-//ºñ±³¹İº¹ Å©¸é ´ã±â 
+//1. í° ìˆ˜ ì¶œë ¥í•˜ê¸°
 
 public class Ex1 {
-	private static ArrayList<Integer> solution(int n, int[] arr) {
-		ArrayList<Integer> answer = new ArrayList<>();
-		answer.add(arr[0]);
-		for(int i=1;i<n;i++) {
-			if(arr[i]>arr[i-1]) {
-				answer.add(arr[i]);
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] arr = new int[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = sc.nextInt();
+		}
+		ArrayList<Integer> a = new ArrayList<>();
+		a.add(arr[0]);
+		for (int i = 1; i < n; i++) {
+			if (arr[i] > arr[i - 1]) {
+				a.add(arr[i]);
 			}
 		}
-		return answer;
-	}
- 
-	public static void main(String[] args) {
-		Scanner kb = new Scanner(System.in);
-		int n = kb.nextInt();
-		int[] arr= new int[n];
-		for(int i=0;i<n;i++) {
-			arr[i]=kb.nextInt();
-		}
-		for(int x: solution(n,arr)) {
-			System.out.print(x+" ");
-		}
-	}
+		for (int d : a) {
+			System.out.print(d + " ");
 
+		}
+	}
 }
