@@ -4,31 +4,24 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//2.º¸ÀÌ´Â ÇĞ»ı
-//Ã¹¹øÂ°´Â °Á ÀÔ·Â,
-//maxºñ±³ÇØ¼­ Å©¸é ++ , max°ª º¯°æ
+//2.ë³´ì´ëŠ” í•™ìƒ o
 public class Ex2 {
-	private static int solution(int n, int[] arr) {
-		int answer=1, max=arr[0];
-		for(int i=1;i<n;i++) {
-			if(arr[i]>max) {
-				answer++;
-				max=arr[i];
-			} 
-		}
-		return answer;
-	}
- 
 	public static void main(String[] args) {
-		Scanner kb = new Scanner(System.in);
-		int n = kb.nextInt();
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
 		int[] arr= new int[n];
 		for(int i=0;i<n;i++) {
-			arr[i]=kb.nextInt();
+			arr[i]=sc.nextInt();
 		}
-		
-			System.out.print(solution(n,arr));
-		
+		int max=arr[0];
+		int count=1;
+		for(int i=1;i<n;i++ ) {
+			if(max<arr[i]) {
+				count++;
+				max=arr[i];
+			}
+		}
+		System.out.println(count);
 	}
 
 }
