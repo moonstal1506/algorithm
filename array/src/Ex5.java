@@ -4,32 +4,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-//5. ¼Ò¼ö
-//n³Ñ°Ü
-//cnt´Â 0
-//¹è¿­»ı¼º
-//2ºÎÅÍ ½ÃÀÛ 
-//ÃÊ±â¿¡´Â ´Ù 0ÀÌ¹Ç·Î 0ÀÌ¸é++
-//¹İº¹À¸·Î ¹è¼öÃ£°í 1³ÖÀ½
+//5. ì†Œìˆ˜(ì—ë¼í† ìŠ¤í…Œë„¤ìŠ¤ ì²´)
 public class Ex5 {
-	public static int solution(int n) {
-		int cnt=0;
-		int[] a=new int[n+1];
-		for(int i=2; i<n;i++) {
-			if(a[i]==0) {
-				cnt++;
-				for(int j=i;j<n;j+=i) a[j]=1;
-			}
-			
-		}
-		return cnt;
-	}
  
 	public static void main(String[] args) {
-		Scanner kb = new Scanner(System.in);
-		int n = kb.nextInt();
-		System.out.println(solution(n));
-		
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] arr=new int[n+1];
+		int count=0;
+		for(int i=2;i<=n;i++) {
+			if(arr[i]==0) {
+				count++;
+			}
+			for(int j=i;j<=n;j+=i) {
+				arr[j]=1;
+			}
+		}
+		System.out.println(count);
 	}
-
 }
