@@ -1,56 +1,19 @@
 
 import java.util.Scanner;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
-//4.ÇÇº¸³ªÄ¡ ¼ö¿­
-//¼ıÀÚÀÔ·Â ³Ñ°Ü
-//answer ¹è¿­
-//0,1Àº 1ÀÌ´Ù
-//¹İº¹¹® i-2¶ûi-1 ´õÇÑ°Ô i
-//public class Ex4 {
-//	public static int[] solution(int n) {
-//		int[] answer= new int[n];
-//		answer[0]=1;
-//		answer[1]=1;
-//		for(int i=2; i<n; i++) {
-//			answer[i]=answer[i-2]+answer[i-1];
-//		}
-//		return answer;
-//	}
-// 
-//	public static void main(String[] args) {
-//		Scanner kb = new Scanner(System.in);
-//		int n = kb.nextInt();
-//	
-//		for(int x:solution(n) )
-//			System.out.print(x+" ");
-//		
-//	}
-//
-//}
-
-
-//¹Ù·ÎÃâ·Â a1b2c¼±¾ğ ab¸ÕÀúÃâ·Â
-//c¸¸µé°í a´Âb·Î b´Âc·Î
+//4. í”¼ë³´ë‚˜ì¹˜ ìˆ˜ì—´ o
 public class Ex4 {
-	public static void solution(int n) {
-		int a=1, b=1, c;
-		System.out.print(a+" "+b+" ");
-		for(int i=2; i<n; i++) {
-			c=a+b;
-			System.out.print(c+" ");
-			a=b;
-			b=c;
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] arr= new int[n];
+		arr[0]=1;
+		arr[1]=1;
+		for(int i=2;i<n;i++) {
+			arr[i]=arr[i-2]+arr[i-1];
+		}
+		for(int i:arr) {
+			System.out.print(i+" ");
 		}
 	}
- 
-	public static void main(String[] args) {
-		Scanner kb = new Scanner(System.in);
-		int n = kb.nextInt();
-		solution(n);
-		
-	}
-
 }
