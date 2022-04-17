@@ -1,40 +1,23 @@
 import java.util.Scanner;
 
-import java.util.ArrayList;
-import java.util.Scanner;
 
-
-//7.Á¡¼ö°è»ê
-//n¹Ş°í, ¹è¿­»ı¼º
-//¹è¿­¿¡ ´ã¾Æ
-//answer cnt
-//¹İº¹
-//1ÀÏ¶§ ++ ´ä¿¡ ´ã±â
-//¾Æ´Ò¶§ cnt0ÃÊ±âÈ­
+//7.ì ìˆ˜ê³„ì‚° o
 public class Ex7 {
-
-	
-	public static int solution(int n,int[] arr) {
-		int answer=0, cnt=0;
-		for(int i=0;i<n;i++) {
-			if(arr[i]==1) {
-				cnt++;
-				answer+=cnt;
-			}
-		}
-		
-		return answer;
-	}
  
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		int n = kb.nextInt();
 		int[] arr = new int[n];
+		int score=0;
+		int count=0;
 		for(int i=0;i<n;i++) {
-			arr[i]=kb.nextInt();
+			if(kb.nextInt()==1) {
+				count++;
+				score+=count;
+			}else {
+				count=0;
+			}
 		}
-		System.out.print(solution(n,arr));
-		
+		System.out.println(score);
 	}
-
 }
