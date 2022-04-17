@@ -1,27 +1,9 @@
 import java.util.Scanner;
 
-import java.util.ArrayList;
-import java.util.Scanner;
 
-
-//8. µî¼ö±¸ÇÏ±â
-//answer¹è¿­ n°³ »ý¼º
-//cnt 1µî
-//³ªº¸´Ù Å«¾Ö ÀÖÀ¸¸é ++
-//´ä¿¡ cnt ´ã±â
+//8. ë“±ìˆ˜êµ¬í•˜ê¸° o
 public class Ex8 {
-	public static int[] solution(int n,int[] arr) {
-		int[] answer= new int[n];
-		for(int i=0;i<n;i++) {
-			int cnt=1;
-			for(int j=0;j<n;j++) {
-				if(arr[i]<arr[j]) cnt++;
-			}
-			answer[i]=cnt;
-		}
-		
-		return answer;
-	}
+
  
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
@@ -30,9 +12,20 @@ public class Ex8 {
 		for(int i=0;i<n;i++) {
 			arr[i]=kb.nextInt();
 		}
-		for(int x:solution(n,arr) )
-		System.out.print(x+" ");
+		int[] num= new int[n];
+		for(int i=0;i<n;i++) {
+			int cnt=1;
+			for(int j=0;j<n;j++) {
+				if(arr[i]<arr[j]) {
+					cnt++;
+				}
+			}
+			num[i]=cnt;
+		}
 		
+		for(int i:num) {
+			System.out.print(i+" ");
+		}
 	}
 
 }
