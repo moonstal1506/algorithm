@@ -4,17 +4,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-//11. ÀÓ½Ã¹İÀåÁ¤ÇÏ±â
-//nÀ» ¹Ş¾Æ¼­ 1ºÎÅÍ ½ÃÀÛÇÏ´Â 2Â÷¿ø¹è¿­ 5°³ÀÇ ¹İ
-//1ºÎÅÍ½ÃÀÛÇÏ´Â ¹İº¹¹® ¼ıÀÚ´ã¾Æ¼­ ³Ñ°Ü
-//answer¶û max¼±¾ğ
-//1ºÎÅÍ »ïÁß¹İº¹ cnt¼±¾ğ 5¹İ±îÁö
-//¹İÀÌ °°À¸¸é ++ÇÏ°í ³ª¿Í
-//maxº¸´Ù Å©¸é ¹Ù²ã °Â¹øÈ£°¡ ´ä
-//¿Ö 1¹øºÎÅÍ ½ÃÀÛ? ÇĞ»ı¹øÈ£ 1¹ø½ÃÀÛ ÇĞ»ı¹øÈ£ ¸®ÅÏ
+//11. ì„ì‹œë°˜ì¥ ì •í•˜ê¸°
 public class Ex11 {
-	public static int solution(int n,int[][] arr) {
-		int answer=0,max=0;
+
+	public static void main(String[] args) {
+		Scanner kb = new Scanner(System.in);
+		int n = kb.nextInt();
+		int[][] arr = new int[n+1][6];
+		for(int i=1;i<=n;i++) {
+			for(int j=1;j<=5;j++) {
+				arr[i][j]=kb.nextInt();
+			}
+		}
+		
+		int max=0;
+		int student=0;
 		for(int i=1;i<=n;i++) {
 			int cnt=0;
 			for(int j=1;j<=n;j++) {
@@ -25,25 +29,12 @@ public class Ex11 {
 					}
 				}
 			}
-			if(max<cnt) {
+			if(cnt>max) {
 				max=cnt;
-				answer=i;
+				student=i;
 			}
 		}
-		return answer;
-	}
- 
-	public static void main(String[] args) {
-		Scanner kb = new Scanner(System.in);
-		int n = kb.nextInt();
-		int[][] arr = new int[n+1][6];
-		for(int i=1;i<=n;i++) {
-			for(int j=1;j<=5;j++) {
-				arr[i][j]=kb.nextInt();
-			}
-		}
-		System.out.print(solution(n,arr));
-		
+		System.out.println(student);
 	}
 
 }
