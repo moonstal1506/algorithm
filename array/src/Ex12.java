@@ -1,42 +1,8 @@
 import java.util.Scanner;
 
-import java.util.ArrayList;
-import java.util.Scanner;
 
-
-//12.¸àÅä¸µ
-//m¹øÀÇ Å×½ºÆ® n¸í
-//4ÁßÆ÷¹®
-//answer
-//ÇĞ»ı Â¦ °æ¿ìÀÇ ¼ö
-//cnt
-//m¹ø
-//¸àÅä ¸àÆ¼ µî¼öº¯¼ö
-//°æ¿ìÀÇ ¼ö¶û °°Àº ÇĞ»ıÃ£À¸¸é º¯¼ö¿¡ ³Ö°í µî¼öºñ±³ÇØ¼­ ++
-//m¹ø ÃæÁ·½Ã answer++
+//12.ë©˜í† ë§
 public class Ex12 {
-	public static int solution(int n,int m,int[][] arr) {
-		int answer=0;
-		for(int i=1;i<=n;i++) {
-			for(int j=1;j<=n;j++) {
-			int cnt=0;
-				for(int k=0;k<m;k++) {
-					int pi=0, pj=0;
-					for(int s=0; s<n; s++){
-						if(arr[k][s]==i) pi=s;
-						if(arr[k][s]==j) pj=s;
-					}
-					if(pi<pj) cnt++;
-				}
-				if(cnt==m) {
-					answer++;
-				}
-				
-			}
-			
-		}
-		return answer;
-	}
  
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
@@ -48,8 +14,24 @@ public class Ex12 {
 				arr[i][j]=kb.nextInt();
 			}
 		}
-		System.out.print(solution(n,m,arr));
 		
+		int answer=0;
+		for(int i=1;i<=n;i++) {
+			for(int j=1;j<=n;j++) {//ì—¬ê¸°ê¹Œì§€ ì§ê¿ ì •í•´ì§€ê³  ë°‘ì—ë¶€í„° ë‘ëª…ì— ëŒ€í•œ ë“±ìˆ˜ ë¹„êµ
+				int cnt=0;
+				for(int k=0;k<m;k++) {//í…ŒìŠ¤íŠ¸
+					int pi=0,pj=0;
+					for(int s=0;s<n;s++) {//ë“±ìˆ˜
+						if(arr[k][s]==i) pi=s;
+						if(arr[k][s]==j) pj=s;
+					}
+					if(pi<pj) cnt++;//ë‘˜ ë¹„êµí•œê±°
+				}
+				if(cnt==m) {
+					answer++;
+				}
+			}
+		}
+		System.out.println(answer);
 	}
-
 }

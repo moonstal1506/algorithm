@@ -1,8 +1,5 @@
 import java.util.Scanner;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 
 //11. 임시반장 정하기
 public class Ex11 {
@@ -36,5 +33,4 @@ public class Ex11 {
 		}
 		System.out.println(student);
 	}
-
 }
