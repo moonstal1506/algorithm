@@ -1,8 +1,5 @@
 import java.util.Scanner;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 
 //9. 격자판 최대합
 public class Ex9 {
