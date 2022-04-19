@@ -1,46 +1,50 @@
 package twoPointersSlidingWindow;
 
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
-//1.µÎ¹è¿­ÇÕÄ¡±â
-//¼ıÀÚÀÔ·Â ¹è¿­¸¸µé¾î ´ã¾Æ µÎ¹øÁøÇà
-//nmab³Ñ±è
-//¾î·¹ÀÌ¸®½ºÆ®
-//Æ÷ÀÎÅÍ µÎ°³ ¸¸µé¾î
-//ÇÏ³ª°¡ ³¡³¯¶§±îÁö ¹İº¹ ºñ±³ÇØ¼­ ÀÛÀº°Í ³Ö°í ÈÄÀ§Áõ°¡ Æ÷ÀÎÅÍ ¿Å°ÜÁÖ±â
-//³ª¸ÓÁöµµ ³¡³¯¶§±îÁö ³Ö±â ´ä ¸®ÅÏ
+//1. ë‘ ë°°ì—´ í•©ì¹˜ê¸° O
 public class Ex1 {
-	private static ArrayList<Integer> solution(int n,int m, int[] a,int[] b) {
-		ArrayList<Integer> answer = new ArrayList<>();
-		int p1=0,p2=0;
-		while(p1<n&&p2<m) {
-			if(a[p1]<b[p2]) {
-				answer.add(a[p1++]);
-			}else {
-				answer.add(b[p2++]);
-			}
-		}
-		while(p1<n) answer.add(a[p1++]);
-		while(p2<m) answer.add(b[p2++]);
-		
-		return answer;
-	}
- 
+	
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
+//		int n = kb.nextInt();
+//		int[] a= new int[n];
+//		ArrayList<Integer> arr=new ArrayList<>();
+//		for(int i=0;i<n;i++) {
+//			arr.add(kb.nextInt());
+//		}
+//		int m = kb.nextInt();
+//		for(int i=0;i<m;i++) {
+//			arr.add(kb.nextInt());
+//		}
+//		Collections.sort(arr);
+		
 		int n = kb.nextInt();
 		int[] a= new int[n];
 		for(int i=0;i<n;i++) {
 			a[i]=kb.nextInt();
 		}
+		
 		int m = kb.nextInt();
 		int[] b= new int[m];
 		for(int i=0;i<m;i++) {
 			b[i]=kb.nextInt();
 		}
-		for(int x:solution(n,m,a,b))
-			System.out.print(x+" ");
+		
+		ArrayList<Integer> arr=new ArrayList<>();
+		int pa=0;
+		int pb=0;
+		while(pa<n&&pb<m) {
+			if(a[pa]<b[pb]) arr.add(a[pa++]);
+			else arr.add(b[pb++]);
+		}
+		while(pa<n) arr.add(a[pa++]);
+		while(pb<m) arr.add(b[pb++]);
+		
+		for(int i:arr)
+		System.out.print(i+" ");
 		
 	}
 
