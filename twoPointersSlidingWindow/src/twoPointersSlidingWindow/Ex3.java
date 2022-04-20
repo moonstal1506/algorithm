@@ -1,31 +1,10 @@
 package twoPointersSlidingWindow;
 
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-//3.ÃÖ´ë¸ÅÃâ
-//n°ú kÀÔ·Â
-//n°³ ¹è¿­ »ı¼º
-//answer sumÃÊ±âÈ­
-//k¸¸Å­ ´õÇØ¼­ answer¿¡ ´ã¾Æ
-//¿·¿¡°Í ´õÇÏ°í k¸¸Å­ ¾Õ¿¡ÀÖ´Â°Í »©¼­
-//¿·À¸·Î ¿Å°Ü°¡¸é¼­ ÃÖ´ë°ªºñ±³
+//3. ìµœëŒ€ ë§¤ì¶œ
 public class Ex3 {
-	private static int solution(int n,int k, int[] a) {
-		int answer=0,sum=0;
-		for(int i=0;i<k;i++) {
-			sum+=a[i];
-		}
-		answer=sum;
-		for(int i=k;i<n;i++) {
-			sum=sum+(a[i]-a[i-k]);
-			answer=Math.max(answer, sum);
-		}
-		
-		return answer;
-	}
- 
+	
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		int n = kb.nextInt();
@@ -34,9 +13,16 @@ public class Ex3 {
 		for(int i=0;i<n;i++) {
 			a[i]=kb.nextInt();
 		}
-		
-			System.out.print(solution(n,k,a));
-		
+		int sum=0;
+		int answer=0;
+		for(int i=0;i<k;i++) {
+			sum+=a[i];
+		}
+		answer=sum;
+		for(int i=k;i<n;i++) {
+			sum+=a[i]-a[i-k];
+			answer=Math.max(answer, sum);
+		}
+		System.out.println(answer);
 	}
-
 }

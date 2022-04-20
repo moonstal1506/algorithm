@@ -1,8 +1,8 @@
 package twoPointersSlidingWindow;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 //2. 공통원소 구하기
 
@@ -41,5 +41,4 @@ public class Ex2 {
 			System.out.print(i+" ");
 		}
 	}
-
 }
