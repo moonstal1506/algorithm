@@ -4,31 +4,10 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//2. °øÅë¿ø¼Ò
-//¾î·¹ÀÌ¸®½ºÆ®¿¡ ´ãÀ»°ÅÀÓ
-//³Ñ°Ü¹ŞÀº ¹è¿­ Á¤·Ä
-//Æ÷ÀÎÅÍ ¸¸µé¾î ÇÏ³ª ³¡³¯¶§±îÁö 
-//°°À¸¸é ´ã°í Æ÷ÀÎÅÍ2°³´Ù Áõ°¡
-//¾Æ´Ï¸é ÀÛÀº¼öÀÇ Æ÷ÀÎÅÍ Áõ°¡
+//2. ê³µí†µì›ì†Œ êµ¬í•˜ê¸°
 
 public class Ex2 {
-	private static ArrayList<Integer> solution(int n,int m, int[] a,int[] b) {
-		ArrayList<Integer> answer = new ArrayList<>();
-		Arrays.sort(a);
-		Arrays.sort(b);
-		int p1=0,p2=0;
-		while(p1<n&&p2<m) {
-			if(a[p1]==b[p2]) {
-				answer.add(a[p1++]);
-				p2++;
-			}
-			else if(a[p1]<b[p2]) p1++;
-			else p2++;	
-		}
-		
-		return answer;
-	}
- 
+
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		int n = kb.nextInt();
@@ -41,9 +20,26 @@ public class Ex2 {
 		for(int i=0;i<m;i++) {
 			b[i]=kb.nextInt();
 		}
-		for(int x:solution(n,m,a,b))
-			System.out.print(x+" ");
+		int n2=0;
+		int m2=0;
 		
+		ArrayList<Integer> arr=new ArrayList<>();
+		Arrays.sort(a);
+		Arrays.sort(b);
+		while(n2<n&&m2<m) {
+			if(a[n2]==b[m2]) {
+				arr.add(a[n2]);
+				n2++;
+				m2++;
+			}else if(a[n2]<b[m2]) {
+				n2++;
+			}else {
+				m2++;
+			}
+		}
+		for(int i:arr) {
+			System.out.print(i+" ");
+		}
 	}
 
 }
