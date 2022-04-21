@@ -1,41 +1,33 @@
 package twoPointersSlidingWindow;
 
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-//6. ÃÖ´ë ±æÀÌ ¿¬¼ÓºÎºĞ¼ö¿­
-//n°³±æÀÌ k¹ø ¹Ù²Ü¼ö ÀÖ´Ù ÀÔ·Â¹Ş°í
-//n°³ ¹è¿­ »ı¼º ¼ö¿­ÀÔ·Â¹Ş±â
-//answer cnt lt ÇÊ¿ä
-//¹İº¹ rt n¹ø 
-//0ÀÌ¸é cnt++
-//¹Ù²Ü¼ö ÀÖ´Â È½¼ö ÃÊ°ú k¹ø³ÑÀ¸¸é lt¿òÁ÷ÀÏ°Çµ¥ 0ÀÌ¸é cnt--ÇØÁÖ°í lt++
-//´äÀº ÃÖ´ë°ª ±æÀÌ°è»êrt-lt+1
+//6. ìµœëŒ€ ê¸¸ì´ ì—°ì†ë¶€ë¶„ìˆ˜ì—´
 public class Ex6 {
-	private static int solution(int n,int k,int[] arr) {
-		int answer=0,cnt=0,lt=0;
-		for(int rt=0;rt<n;rt++) {
-			if(arr[rt]==0) cnt++;
-			while(cnt>k) {
-				if(arr[lt]==0)cnt--;
-				lt++;
-			}
-			answer=Math.max(answer, rt-lt+1);
-		}
-		return answer;
-	}
- 
+
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		int n = kb.nextInt();
 		int k = kb.nextInt();
-		int[] arr= new int[n];
-		for(int i=0;i<n;i++) {
-			arr[i]=kb.nextInt();
+		int[] arr = new int[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = kb.nextInt();
 		}
-		System.out.print(solution(n,k,arr));
-		
+		int cnt = 0;
+		int lt = 0;
+		int answer = 0;
+		for (int rt = 0; rt < n; rt++) {
+			if (arr[rt] == 0) {
+				cnt++;
+			}
+			while (cnt > k) {
+				if (arr[lt] == 0) {
+					cnt--;
+				}
+				lt++;
+			}
+			answer = Math.max(answer, rt - lt + 1);
+		}
+		System.out.println(answer);
 	}
-
 }
