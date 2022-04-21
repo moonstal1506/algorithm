@@ -1,28 +1,9 @@
 package twoPointersSlidingWindow;
 
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-//4.¿¬¼Ó ºÎºĞ¼ö¿­
-//answer, sum ltÃÊ±âÈ­
-//rt¸¦ n±îÁö µ¹·Á
-//sum¿¡ ´©Àû m°ú °°À¸¸é ´ä++
-//sumÀÌ mº¸´Ù Å©°Å³ª °°À»¶§ lt¿Å±â¸é¼­ »©±â ¹İº¹ 
-//°°¾ÆÁö¸é ´ä++
+//4. ì—°ì† ë¶€ë¶„ìˆ˜ì—´
 public class Ex4 {
-	private static int solution(int n,int m, int[] a) {
-		int answer=0,sum=0,lt=0;
-		for(int rt=0; rt<n;rt++) {
-			sum+=a[rt];
-			if(sum==m) answer++;
-			while(sum>=m) {
-				sum-=a[lt++];
-				if(sum==m) answer++;
-			}
-		}
-		return answer;
-	}
  
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
@@ -32,8 +13,21 @@ public class Ex4 {
 		for(int i=0;i<n;i++) {
 			a[i]=kb.nextInt();
 		}
-		System.out.print(solution(n,m,a));
-		
+		int count = 0;
+		int lt=0;
+		int sum=0;
+		for(int rt=0;rt<n;rt++) {
+			sum+=a[rt];
+			if(sum==m) {
+				count++;
+			}
+			while(sum>=m) {
+				sum-=a[lt++];
+				if(sum==m) {
+					count++;
+				}
+			}
+		}
+		System.out.println(count);
 	}
-
 }
