@@ -1,55 +1,34 @@
 package twoPointersSlidingWindow;
 
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-//5-1.¿¬¼ÓµÈ ÀÚ¿¬¼öÀÇ ÇÕ
-//¾Õ¹®Á¦¿Í µ¿ÀÏÇÏÁö¸¸ ÀÔ·Â¹ŞÀº ¼ıÀÚ·Î ¹è¿­À» ¸¸µé¾î¾ßÇÑ´Ù.
-//ÃÖ´ë°¡ n/2+1ÀÌ´Ù
-//¹è¿­ »ı¼º
-//rt¸¦ m¹ø µ¹·Á sum
-//n°ú °°À¸¸é ++
-//sumÀÌ Å©°Å³ª °°À»¶§ 
-//lt»©°í ¿òÁ÷¿© °°ÀºÁö È®ÀÎ ¹İº¹
-
-//5-2.
-//15¸¦ 2°³ ¿¬¼ÓµÈ ¼ö ¸¸µé·Á¸é 1,2/3°³ ¼ö 1,2,3 ´õÇØ¼­ »©ÁØµÚ cnt°³ÀÇ ¼ö·Î ³ª´³À» ¶§ ³ª¸ÓÁö°¡ 0ÀÌ¸é °¡´É
-
-
+//5.ì—°ì†ëœ ìì—°ìˆ˜ì˜ í•© O
 public class Ex5 {
-	private static int solution(int n) {
-//		int answer=0,sum=0,lt=0;
-//		int m =n/2+1;
-//		int[] a=new int[m];
-//		for(int i=0; i<m;i++) {
-//			a[i]=i+1;
-//		}
-//		for(int rt=0;rt<m;rt++) {
-//			sum+=a[rt];
-//			if(sum==n) answer++;
-//			while(sum>=n) {
-//				sum-=a[lt++];
-//				if(sum==n) answer++;
-//			}
-//		}
-		
-		int answer=0, cnt=1;
-		n--;
-		while(n>0) {
-			cnt++;
-			n=n-cnt;
-			if(n%cnt==0)answer++;
-		}
-		
-		return answer;
-	}
- 
+
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		int n = kb.nextInt();
-		System.out.print(solution(n));
-		
+		int[] arr=new int[n+1];
+		for(int i=1;i<=n;i++) {
+			arr[i]=i;
+		}
+		int sum=0;
+		int cnt=0;
+		int lt=1;
+		int m=n/2+1;
+		for(int rt=1;rt<=m;rt++) {
+			sum+=arr[rt];
+			if(sum==n) {
+				cnt++;
+			}
+			while(sum>=n) {
+				sum-=arr[lt++];
+				if(sum==n) {
+					cnt++;
+				}
+			}
+		}
+		System.out.println(cnt);
 	}
 
 }
