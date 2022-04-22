@@ -1,38 +1,27 @@
 package hashMapTreeSet;
 
-import java.util.Scanner;
 import java.util.HashMap;
+import java.util.Scanner;
 
-//2.¾Æ³ª±×·¥
-//String 2°³ ÀÔ·Â¹Ş¾Æ
-//´äÀº yes·Î ÃÊ±âÈ­
-//ÇØ½¬¸Ê¸¸µé¾î Å°¿Í °ª ³Ö¾îÁà
-//µÎ¹øÂ° ´Ü¾îµ¹¸é¼­ Å°Æ÷ÇÔ? °ªÀÌ0ÀÎÁö È®ÀÎ ÈÄ
-//ÀÖÀ¸¸é ¸ÊÀÇ °ªÀ» °¨¼Ò½ÃÅ´
+//ì•„ë‚˜ê·¸ë¨(í•´ì‰¬) 
 public class Ex2 {
-	private static String solution(String a,String b) {
-		String answer="YES";
-		HashMap<Character, Integer> map= new HashMap<>();
-		for(char key: a.toCharArray()) {
-			map.put(key, map.getOrDefault(key, 0)+1);
-			
-		}
-		for(char key:b.toCharArray()) {
-			if(!map.containsKey(key)||map.get(key)==0) {
-				return "NO";
-			}else {
-				map.put(key, map.get(key)-1);
-			}
-		}
-		return answer;
-	}
- 
+
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
-		String a=kb.next();
-		String b=kb.next();
-		System.out.print(solution(a,b));
-		
+		String a = kb.next();
+		String b = kb.next();
+		HashMap<Character, Integer> map = new HashMap<>();
+		String isEquel = "YES";
+		for (char ch : a.toCharArray()) {
+			map.put(ch, map.getOrDefault(ch, 0) + 1);
+		}
+		for (char key : b.toCharArray()) {
+			if (!map.containsKey(key) || map.get(key) == 0) {
+				isEquel = "NO";
+				break;
+			}
+			map.put(key, map.get(key) - 1);
+		}
+		System.out.println(isEquel);
 	}
-
 }
