@@ -3,39 +3,29 @@ package hashMapTreeSet;
 import java.util.Scanner;
 import java.util.HashMap;
 
-//1.ÇÐ±ÞÈ¸Àå
-//ÇÐ»ý¼ö ÅõÇ¥°á°ú ÀÔ·Â¹Þ¾Æ
-//answer ÇØ½¬¸Ê ¸¸µé¾î
-//¹Ýº¹ÇØ¼­ ¸Ê¿¡´Ù Å°¿Í °ª°è»êÇØ¼­ ³Ö¾î
-//ÃÖ´ë°ª ¼±¾ð
-//¸ÊÀÇ Å°¸¦ µ¹·Á °ªºñ±³ ÃÖ´ë°ªº¯°æ ´äÀº Å°
+//1.í•™ê¸‰ íšŒìž¥(í•´ì‰¬)
 public class Ex1 {
-	private static char solution(int n,String s) {
-		char answer= ' ';
-		HashMap<Character, Integer> map=new HashMap<>();
-		for(char x:s.toCharArray()) {
-			map.put(x, map.getOrDefault(x, 0)+1);
-		}
-		
-		//System.out.println(map.containsKey('A')); true
-		//System.out.println(map.size()); Å° °³¼ö:5
-		//System.out.println(map.remove('C')); cÀÇ °ª ¸®ÅÏ
-		
-		int max=Integer.MIN_VALUE;
-		for(char key:map.keySet()) {
-			if(max<map.get(key)) {
-				max=map.get(key);
-				answer=key;
-			}
-		}
-		return answer;
-	}
- 
+
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		int n = kb.nextInt();
 		String s=kb.next();
-			System.out.print(solution(n,s));
+		
+		HashMap<Character, Integer> map=new HashMap<>();
+		int max=0;
+		char answer=' ';
+		
+		for(char ch:s.toCharArray()) {
+			map.put(ch, map.getOrDefault(ch, 0)+1);
+		}
+		for(char key:map.keySet()) {
+			if(max<map.get(key)) {
+				max=map.get(key);
+				answer = key;
+			}
+			
+		}
+		System.out.println(answer);
 		
 	}
 
