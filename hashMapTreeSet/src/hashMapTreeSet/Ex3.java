@@ -4,33 +4,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-//3.¸ÅÃâ¾×ÀÇ Á¾·ù
-//ÃÑ³¯Â¥ ¿¬¼Ó³¯Â¥ ÀÔ·Â
-//¸ÅÃâ¾× ¹è¿­ÀÔ·Â¹Ş¾Æ
-//´äÀº ¾î·¹ÀÌ¸®½ºÆ®
-//ÇØ½¬¸Ê ¸¸µé¾î
-//¿¬¼Ó³¯Â¥-1°³ ¸Ê Å°°ª¹Ì¸®¼¼ÆÃ
-//rtÁõ°¡½ÃÅ°¸é¼­ ³Ö°í »çÀÌÁî±¸ÇØ¼­ ´ä¿¡ ³Ö¾îÁÜ
-//lt´Â »©ÁÙ°ÅÀÓ
-//°ªÀÌ 0µÇ¸é Å°¿¡¼­ »èÁ¦
-//lt++
+//3. ë§¤ì¶œì•¡ì˜ ì¢…ë¥˜
 public class Ex3 {
-	private static ArrayList<Integer> solution(int n, int k, int[] arr) {
-		ArrayList<Integer> answer=new ArrayList<>();
-		HashMap<Integer, Integer> map= new HashMap<>();
-		for(int i=0;i<k-1;i++) {
-			map.put(arr[i], map.getOrDefault(arr[i], 0)+1);
-		}
-		int lt=0;
-		for(int rt=k-1;rt<n;rt++) {
-			map.put(arr[rt], map.getOrDefault(arr[rt], 0)+1);
-			answer.add(map.size());
-			map.put(arr[lt], map.get(arr[lt])-1);
-			if(map.get(arr[lt])==0) map.remove(arr[lt]);
-			lt++;
-		}
-		return answer;
-	}
  
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
@@ -40,9 +15,23 @@ public class Ex3 {
 		for(int i=0;i<n;i++) {
 			arr[i]=kb.nextInt();
 		}
-		for(int x:solution(n,k,arr))
-		System.out.print(x+" ");
-		
+		HashMap<Integer, Integer> map= new HashMap<>();
+		ArrayList<Integer> answer=new ArrayList<>();
+		for(int i=0;i<k-1;i++) {
+			map.put(arr[i], map.getOrDefault(arr[i], 0)+1);
+		}
+		int lt=0;
+		for(int rt=k-1;rt<n;rt++) {
+			map.put(arr[rt], map.getOrDefault(arr[rt], 0)+1);
+			answer.add(map.size());
+			map.put(arr[lt], map.get(arr[lt])-1);
+			if(map.get(arr[lt])==0) {
+				map.remove(arr[lt]);
+			}
+			lt++;
+		}
+		for(int i: answer) {
+			System.out.print(i+" ");
+		}
 	}
-
 }
