@@ -1,42 +1,11 @@
 package hashMapTreeSet;
 
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.TreeSet;
-import java.util.Collections;
 
-//Æ®¸®¼Â: Áßº¹Á¦°Å Á¤·Ä
-//5. k¹øÂ° Å« ¼ö
-//n,k,¹è¿­ ÀÔ·Â¹Ş¾Æ
-//answer-1ÃÊ±âÈ­
-//Æ®¸®¼Â¸¸µé¾î ³»¸²Â÷¼øÁ¤·Ä
-//3Áßfor Æ®¸®¼Â¿¡ ´õÇØ¼­³Ö¾î
-//µî¼öÇÊ¿äcnt
-//Á¤·ÄµÈ Æ®¸®¼Â¿¡¼­ ²¨³» cnt++ k¶û °°¾ÆÁö¸é ¸®ÅÏ
-//¾Æ´Ï¸é -1À» ¸®ÅÏ
+//5. Kë²ˆì§¸ í° ìˆ˜
 public class Ex5 {
-	private static int solution(int n, int k, int[] arr) {
-		int answer = -1;
-		TreeSet<Integer> set = new TreeSet<>(Collections.reverseOrder());//³»¸²Â÷¼ø
-		for(int i=0;i<n;i++) {
-			for(int j=i+1;j<n;j++) {
-				for(int l=j+1;l<n;l++) {
-					set.add(arr[i]+arr[j]+arr[l]);
-				}
-			}
-		}
-	
-//		System.out.println(set.size());
-//		System.out.println(set.first());
-//		System.out.println(set.last());
-		
-		int cnt=0;
-		
-		for(int x:set) {
-			cnt++;
-			if(cnt==k) return x;
-		}
-		return answer;
-	}
 
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
@@ -46,9 +15,24 @@ public class Ex5 {
 		for(int i=0; i<n; i++) {
 			arr[i]=kb.nextInt();
 		}
-
-		System.out.print(solution(n,k,arr));
-
+		
+		TreeSet<Integer> set= new TreeSet<>(Collections.reverseOrder());
+		for(int i=0;i<n;i++) {
+			for(int j=i+1;j<n;j++) {
+				for(int y=j+1;y<n;y++) {
+					set.add(arr[i]+arr[j]+arr[y]);
+				}
+			}
+		}
+		int cnt=0;
+		int answer=-1;
+		for(int x:set) {
+			cnt++;
+			if(cnt==k) {
+				answer=x;
+				break;
+			}
+		}
+		System.out.println(answer);
 	}
-
 }
