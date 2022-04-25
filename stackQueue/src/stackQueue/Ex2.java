@@ -3,54 +3,25 @@ package stackQueue;
 import java.util.Scanner;
 import java.util.Stack;
 
-//3. Å©·¹ÀÎÀÎÇü»Ì±â
-//ÀÌÂ÷¿ø¹è¿­Å©±âÀÔ·Â ¹Ş°í ³Ö¾îÁÜ
-//¹è¿­Å©±â ÀÔ·Â¹Ş°í ³Ö¾îÁÜ
-//Á¡¼ö´Â 0ÃÊ±âÈ­
-//½ºÅÃ¸¸µé¾î
-//moves¹è¿­ µ¹·Á ÆÇÀÇ Çà±æÀÌ±îÁö µ¹·Á
-//±×°÷ÀÌ ¿µÀÌ ¾Æ´Ï¶ó¸é ÀÓ½Ãº¯¼ö¿¡ ´ã°í 0À¸·Î ¹Ù²ã
-//½ºÅÃÀÌ ºñ¾îÀÖÁö ¾Ê°í ÀÓ½Ãº¯¼ö°¡ ¸ÇÀ§¶û °°À»¶§ ´ä2Áõ°¡ÇÏ°í ¾ø¾Ö±â
-//¾Æ´Ï¶ó¸é ½ºÅÃ¿¡ ½×´Â´Ù 
-//ÀÎÇü²¨³ÂÀ¸¸é  breakÇÏ´Â°Å ÀØÁö¸»±â!!
+//2. ê´„í˜¸ë¬¸ìì œê±°
 public class Ex2 {
-	private static int solution(int[][] board, int[] moves) {
-		int answer = 0;
-		Stack<Integer> stack=new Stack<>();
-		for(int pos:moves) {
-			for(int i=0;i<board.length;i++) {
-				if(board[i][pos-1]!=0) {
-					int tmp=board[i][pos-1];
-					board[i][pos-1]=0;
-					if(!stack.isEmpty()&&tmp==stack.peek()) {
-						answer+=2;
-						stack.pop();
-					}
-					else stack.push(tmp);
-					break;
-				}
-			}
-		}
-		
-		return answer;
-	}
- 
+
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
-		int n = kb.nextInt();
-		int[][] board= new int[n][n];
-		for(int i=0;i<n;i++) {
-			for(int j=0;j<n;j++) {
-				board[i][j]=kb.nextInt();
+		String str = kb.next();
+		Stack<Character> stack= new Stack<>();
+		String answer="";
+		for(char x:str.toCharArray()) {
+			if(x==')') {
+				while(stack.pop()!='(') ;
+			}else {
+				stack.push(x);
 			}
 		}
-		int m = kb.nextInt();
-		int[] moves= new int[m];
-		for(int i=0;i<m;i++) {
-			moves[i]=kb.nextInt();
+		for(int i=0;i<stack.size();i++) {
+			answer+=stack.get(i);
 		}
-		System.out.print(solution(board,moves));
-		
+		System.out.println(answer);
 	}
 
 }

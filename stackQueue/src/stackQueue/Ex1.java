@@ -1,10 +1,5 @@
 package stackQueue;
 
-import java.awt.List;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -32,5 +27,4 @@ public class Ex1 {
 		}
 		System.out.println(answer);
 	}
-
 }
