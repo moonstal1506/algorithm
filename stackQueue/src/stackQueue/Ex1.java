@@ -1,38 +1,36 @@
 package stackQueue;
 
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
-//1.¿Ã¹Ù¸¥°ýÈ£
-//¹®ÀÚ¿­ÀÔ·Â¹Þ¾Æ
-//yes·Î ÃÊ±âÈ­
-//½ºÅÃ»ý¼º
-//¹®ÀÚ¿­µ¹·Á
-//(¸é Çª½Ã )ÀÎµ¥ºñ¾îÀÖÀ¸¸é ³ë
-//¾Æ´Ï¸é ÆË
-//(°¡³²¾ÆÀÖ´Â°æ¿ì´Â ³ë
-//´ä¸®ÅÏ
+//1. ì˜¬ë°”ë¥¸ ê´„í˜¸
 public class Ex1 {
-	private static String solution(String str) {
-		String answer = "YES";
-		Stack<Character> stack=new Stack<>();
-		for(char x:str.toCharArray()) {
-			if(x=='(') stack.push(x);
-			else {
-				if(stack.isEmpty()) return "NO";
-				stack.pop();
-			}
-		}
-		if(!stack.isEmpty()) return "NO";
-		
-		return answer;
-	}
- 
+	
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		String str = kb.next();
-		System.out.print(solution(str));
-		
+		Stack<Character> st= new Stack<>();
+		String answer="YES";
+		for(char ch: str.toCharArray()) {
+			if(ch=='(') {
+				st.push(ch);
+			}else {
+				if(st.isEmpty()) {
+					answer="NO";
+					break;
+				}
+				st.pop();
+			}
+		}
+		if(!st.isEmpty()) {
+			answer="NO";
+		}
+		System.out.println(answer);
 	}
 
 }
