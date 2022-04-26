@@ -3,38 +3,32 @@ package stackQueue;
 import java.util.Scanner;
 import java.util.Stack;
 
-//4. ÈÄÀ§½Ä¿¬»ê
-//¹®ÀÚ¿­ÀÔ·Â ¼ıÀÚ¸®ÅÏ
-//´ä0 ÃÊ±âÈ­
-//½ºÅÃ¸¸µé¾î ¹®ÀÚ¿­µ¹·Á
-//¹®ÀÚ°¡¼ıÀÚ¸é ½ºÅÃ¿¡ ´ã´Âµ¥ -'0' ¼ıÀÚ·Î ¹Ù²ã¼­³Ö±â
-//¾Æ´Ï¸é ºÎÈ£ÀÎ°Çµ¥ ¸ÇÀ§ rt ±×´ÙÀ½lt·Î »Ì¾Æ
-//ºÎ¸ğ¸¶´Ù °è»êÇØ¼­ ½ºÅÃ¿¡ ´ã´Â´Ù
-//´äÀº ½ºÅÃ¿¡ ³²Àº °á°ú´Ù.
+//4. í›„ìœ„ì‹ ì—°ì‚°(postfix)
 public class Ex4 {
-	private static int solution(String str) {
-		int answer = 0;
-		Stack<Integer> stack=new Stack<>();
-		for(char x: str.toCharArray()) {
-			if(Character.isDigit(x)) stack.push(x-'0');
-			else {
-				int rt=stack.pop();
-				int lt=stack.pop();
-				if(x=='+') stack.push(lt+rt);
-				else if(x=='-') stack.push(lt-rt);
-				else if(x=='*') stack.push(lt*rt);
-				else if(x=='/') stack.push(lt/rt);
-			}
-		}
-		answer=stack.get(0);
-		return answer;
-	}
- 
+
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		String str = kb.next();
-		System.out.print(solution(str));
-		
-	}
+		Stack<Integer> stack = new Stack<>();
+		int result = 0;
+		for (char ch : str.toCharArray()) {
 
+			if (Character.isDigit(ch)) {
+				stack.push(ch - '0');
+			} else {
+				int rt = stack.pop();
+				int lt = stack.pop();
+				if (ch == '/') {
+					stack.push(lt / rt);
+				} else if (ch == '*') {
+					stack.push(lt * rt);
+				} else if (ch == '+') {
+					stack.push(lt + rt);
+				} else if (ch == '-') {
+					stack.push(lt - rt);
+				}
+			}
+		}
+		System.out.println(stack.pop());
+	}
 }
