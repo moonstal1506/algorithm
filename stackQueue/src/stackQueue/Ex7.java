@@ -4,33 +4,30 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-//7. ±³À°°úÁ¤¼³°è
-//ÇÊ¼ö°ú¸ñ,°èÈ¹ ÀÔ·Â¹Ş¾Æ yes/no¸®ÅÏ
-//´äÀº ¿¹½º·Î ÃÊ±âÈ­
-//Å¥»ı¼º
-//Å¥¿¡ ÇÊ¼ö°ú¸ñ ´ã¾Æ
-//°èÈ¹À» ¹İº¹¹® µ¹¸®¸é¼­ Å¥¿¡ Æ÷ÇÔµÇ¾îÀÖÀ¸¸é Å¥²¨³»¼­ °èÈ¹°ú ºñ±³ ´Ù¸£¸é ³ë ¸®ÅÏ
-//¹İº¹³¡ Å¥°¡ ºñ¾îÀÖÁö ¾ÊÀ¸¸é ³ë ¸®ÅÏ
+//7. êµìœ¡ê³¼ì • ì„¤ê³„
 public class Ex7 {
-	private static String solution(String need,String plan) {
-		String answer = "YES";
-		Queue<Character> q=new LinkedList<>();
-		for(char x: need.toCharArray()) q.offer(x);
-		for(char x: plan.toCharArray()) {
-			if(q.contains(x)) {
-				if(q.poll()!=x) return "NO";
-			}
-		}
-		if(!q.isEmpty()) return "NO";
-		return answer;
-	}
- 
+	
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		String need = kb.next();
 		String plan = kb.next();
-		System.out.print(solution(need,plan));
-		
+		Queue<Character> q=new LinkedList<>();
+		for(char c:need.toCharArray()) {
+			q.add(c);
+		}
+		String answer= "YES";
+		for(char c: plan.toCharArray()) {
+			if(q.contains(c)) {
+				if(q.poll()!=c) {
+					answer="NO";
+					break;
+				}
+			}
+		}
+		if(!q.isEmpty()) {
+			answer="NO";
+		}
+		System.out.println(answer);
 	}
 
 }
