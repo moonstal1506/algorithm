@@ -4,51 +4,20 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-//8.ÀÀ±Ş½Ç
-//ÃÑÈ¯ÀÚ¼ö, m¹øÂ° È¯ÀÚ, À§Çèµµ¹è¿­ ÀÔ·Â ¹Ş¾Æ ¼ıÀÚ¸®ÅÏ
-//»ç¶÷°´Ã¼ ¸¸µé¾îÁÜ id¶û À§Çèµµ ÇÊ¿ä
-//´äÀº 0À¸·Î ÃÊ±âÈ­
-//Å¥¸¸µé¾î n¹ø±îÁö »ç¶÷°´Ã¼ Å¥¿¡ ³Ö¾îÁÜ
-//Å¥°¡ ºñ¾îÀÖÁö ¾ÊÀ» ¶§±îÁö Å¥¿¡¼­ ²¨³» ÀÓ½Ãº¯¼ö¿¡ ´ãÀ½
-//Å¥¿¡ÀÖ´Â »ç¶÷µ¹·Á ÀÓ½Ãº¯¼ö¿ÍÀÇ À§Çèµµ ºñ±³
-//ÀÓ½Ãº¯¼ö À§Çèµµ ³·À¸¸é ´Ù½Ã µÚ·Î º¸³»°í ÀÓ½Ãº¯¼ö ³ÎÃÊ±âÈ­ÇÏ°í ¸ØÃã
-//ÀÓ½Ãº¯¼ö°¡ ³ÎÀÌ¾Æ´Ï¸é ´ä++ÇÏ°í ÀÓ½Ãº¯¼ö¾ÆÀÌµğ¿Í mÀÌ °°À¸¸é ´ä¸®ÅÏ
-
+//8. ì‘ê¸‰ì‹¤
 
 class Person{
 	int id;
 	int priority;
+	
 	public Person(int id, int priority) {
-		this.id=id;
-		this.priority=priority;
+		this.id = id;
+		this.priority = priority;
 	}
 }
 
 public class Ex8 {
-	
-	private static int solution(int n, int m, int[] arr) {
-		int answer=0;
-		Queue<Person> q = new LinkedList<>();
-		for(int i=0; i<n; i++) {
-			q.offer(new Person(i,arr[i]));
-		}
-		while(!q.isEmpty()) {
-			Person tmp = q.poll();
-			for(Person x:q) {
-				if(x.priority>tmp.priority) {
-					q.offer(tmp);
-					tmp=null;
-					break;
-				}
-			}
-			if(tmp!=null) {
-				answer++;
-				if(tmp.id==m) return answer;
-			}
-		}
-		return answer;
-	}
- 
+
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		int n = kb.nextInt();
@@ -57,8 +26,27 @@ public class Ex8 {
 		for(int i=0; i<n; i++) {
 			arr[i]=kb.nextInt();
 		}
-		System.out.print(solution(n,m,arr));
-		
+		Queue<Person> q = new LinkedList<>();
+		for(int i=0;i<n;i++) {
+			q.add(new Person(i,arr[i]));
+		}
+		int answer=0;
+		while(!q.isEmpty()) {
+			Person tmp=q.poll();
+			for(Person a:q) {
+				if(a.priority>tmp.priority) {
+					q.add(tmp);
+					tmp=null;
+					break;
+				}
+			}
+			if(tmp!=null) {
+				answer++;
+				if(tmp.id==m) {
+					System.out.println(answer);
+					break;
+				}
+			}
+		}
 	}
-
 }
