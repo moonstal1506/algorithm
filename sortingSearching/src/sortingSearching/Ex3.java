@@ -2,37 +2,32 @@ package sortingSearching;
 
 import java.util.Scanner;
 
-//3.»ğÀÔÁ¤·Ä µÚ¿¡¼­ ¾ÕÀ¸·Î ¿À¸é¼­ ºñ±³
-//1 ºÎÅÍ½ÃÀÛ ÀÓ½Ãº¯¼ö´Â iÀÚ¸® jµµ ¹Û¿¡¼­ ¼±¾ğ
-//iÀÇ ¾Õ¿¡¼­ 0º¸´Ù ÀÛ°Å³ª °°À»¶§±îÁö ÁÙ¾îµé¸é¼­ ¹İº¹
-//ÀÓ½Ãº¯¼öº¸´ÙÅ©¸é µÚ¿¡ ³Ö¾îÁÜ ¾Æ´Ï¸é ¹İº¹¹® ³ª¿Í
-//¸ØÃáÁöÁ¡+1ÇÑ°÷¿¡ ÀÓ½Ãº¯¼ö ³ÖÀ½
+//3. ì‚½ì… ì •ë ¬
 
 public class Ex3 {
-	private static int[] solution(int n, int[] arr) {
-		for(int i=1;i<n;i++) {
-			int tmp=arr[i],j;
-			for(j=i-1;j>=0;j--) {
-				if(arr[j]>tmp) arr[j+1]=arr[j];
-				else break;
-			}
-			arr[j+1]=tmp;
-		}
-		return arr;
-	}
- 
+
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		int n = kb.nextInt();
-		int[] arr=new int[n];
-		for(int i=0;i<n;i++) {
-			arr[i]= kb.nextInt();
+		int[] arr = new int[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = kb.nextInt();
 		}
-		for(int x:solution(n,arr)) {
-			System.out.print(x+" ");
-			
-		}
-		
-	}
 
+		for (int i = 1; i < n; i++) {
+			int tmp = arr[i];
+			int j;
+			for (j = i - 1; j >= 0; j--) {
+				if (arr[j] > tmp) {//tmpì•ˆì¼ë”ë‹ˆ
+					arr[j + 1] = arr[j];//ì—¬ê¸°ì„œ ë³€ê²½ë˜ì–´ë²„ë¦°ë‹¤
+				} else {
+					break;
+				}
+			}
+			arr[j + 1] = tmp;
+		}
+		for (int x : arr) {
+			System.out.print(x + " ");
+		}
+	}
 }
