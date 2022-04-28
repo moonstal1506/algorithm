@@ -2,24 +2,8 @@ package sortingSearching;
 
 import java.util.Scanner;
 
-//2.¹öºíÁ¤·Ä
-//ÀÌÁß¹Ýº¹
-//¾ÕµÚºñ±³ÇØ¼­ µÚ¿¡°¡ ÀÛÀ¸¸é ¾ÕÀ¸·Î ¹Ù²ãÁÜ
-//ÇÑ¹ø µ¹¶§¸¶´Ù °¡Àå Å«¼ö°¡ Á¤ÇØÁü-> ¹Ýº¹µ¹¶§ n-iÅ­¸¸ µ¹¾Æ¾ßÇÔ
+//2. ë²„ë¸” ì •ë ¬
 public class Ex2 {
-	private static int[] solution(int n, int[] arr) {
-		for(int i=0;i<n-1;i++) {
-			for(int j=0;j<n-i-1;j++) {
-				if(arr[j]>arr[j+1]) {
-					int tmp =arr[j];
-					arr[j] =arr[j+1];
-					arr[j+1] =tmp;
-				}
-
-			}
-		}
-		return arr;
-	}
  
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
@@ -28,11 +12,18 @@ public class Ex2 {
 		for(int i=0;i<n;i++) {
 			arr[i]= kb.nextInt();
 		}
-		for(int x:solution(n,arr)) {
+		for(int j=0;j<n-1;j++) {
+			for(int i=1;i<n-j;i++) {
+				if(arr[i-1]>arr[i]) {
+					int tmp=arr[i-1];
+					arr[i-1]=arr[i];
+					arr[i]=tmp;
+				}
+			}
+		}
+		for(int x:arr) {
 			System.out.print(x+" ");
 			
 		}
-		
 	}
-
 }
