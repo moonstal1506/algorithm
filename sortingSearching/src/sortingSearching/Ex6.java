@@ -4,20 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-//6. Àå³­²Ù·¯±â
-//´äÀº ¾î·¹ÀÌ¸®½ºÆ®¿¡ ´ã±â
-//ÀÓ½Ã¹è¿­¿¡ º¹»çÈÄ Á¤·Ä ºñ±³ÇØ¼­ ´Ù¸¥ ¹øÈ£ ³Ö±â
+//6. ì¥ë‚œê¾¸ëŸ¬ê¸°
 public class Ex6 {
-	private static ArrayList<Integer> solution(int n, int[] arr) {
-		ArrayList<Integer> answer=new ArrayList<>();
-		int[] tmp= arr.clone();
-		Arrays.sort(tmp);
-		for(int i=0;i<n;i++) {
-			if(arr[i]!=tmp[i]) answer.add(i+1);
-		}
-		return answer;
-	}
- 
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		int n = kb.nextInt();
@@ -25,7 +13,16 @@ public class Ex6 {
 		for(int i=0;i<n;i++) {
 			arr[i]= kb.nextInt();
 		}
-		for(int x:solution(n,arr))
+		int[] tmp=arr.clone();
+		Arrays.sort(tmp);
+		ArrayList<Integer> list =new ArrayList<>();
+		for(int i=0;i<n;i++) {
+			if(tmp[i]!=arr[i]) {
+				list.add(i+1);
+			}
+		}
+		
+		for(int x:list)
 		System.out.print(x+" ");
 	}
 
