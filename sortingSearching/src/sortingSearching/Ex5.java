@@ -3,24 +3,9 @@ package sortingSearching;
 import java.util.Arrays;
 import java.util.Scanner;
 
-//5. Áßº¹È®ÀÎ 
-//´äÀ» u·Î ÃÊ±âÈ­
-//Á¤·Ä
-//µÚ¿¡²¨¶û ºñ±³ÇØ¼­ °°À¸¸é ´äd·Î ¹Ù²Ù°í ¸ØÃã
-//´ä ¸®ÅÏ
+//5. ì¤‘ë³µ í™•ì¸
 public class Ex5 {
-	private static String solution(int n, int[] arr) {
-		String answer="U";
-		Arrays.sort(arr);
-		for(int i=0;i<n-1;i++) {
-			if(arr[i]==arr[i+1]) {
-				answer="D";
-				break;
-			}
-		}
-		return answer;
-	}
- 
+	
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		int n = kb.nextInt();
@@ -28,7 +13,14 @@ public class Ex5 {
 		for(int i=0;i<n;i++) {
 			arr[i]= kb.nextInt();
 		}
-			System.out.print(solution(n,arr));
+		Arrays.sort(arr);
+		char answer= 'U';
+		for(int i=0;i<n-1;i++) {
+			if(arr[i]==arr[i+1]) {
+				answer='D';
+				break;
+			}
+		}
+		System.out.println(answer);
 	}
-
 }
