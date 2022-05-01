@@ -3,45 +3,9 @@ package sortingSearching;
 import java.util.Arrays;
 import java.util.Scanner;
 
-//9. ¹ÂÁ÷ºñµğ¿À °áÁ¤ ¾Ë°í¸®Áò
-//9°³¸¦ 3°³·Î ´ã´Âµ¥ ÃÖ¼Ò¿ë·®¸®ÅÏ
-//lt´Â ÃÖ´ë°ª rt´Â ÃÑÇÕÀ¸·Î ÃÊ±âÈ­
-//rt°¡ Å©°Å³ª °°À» ¶§±îÁö Áß°£±¸ÇØ¼­ count ÇÔ¼ö¿¡ ³Ö¾î
-//3º¸´Ù ÀÛ°Å³ª °°À¸¸é rt¸¦ ÁÙÀÎ´Ù
-//¾Æ´Ï¸é lt¸¦ ´Ã¸°´Ù
-//
-//countÇÔ¼ö´Â ¹è¿­°ú ¿ë·®À» ³Ñ°Ü¹Ş´Âµ¥
-//cnt´Â 1·ÎÃÊ±âÈ­ sumÀº 0
-//¹è¿­ µ¹·Á¼­ ´õÇÑ°Ô ¿ë·®º¸´Ù Å¬¶§ cnt++ sumÀº x·Î ÃÊ±âÈ­ÇÏ°í
-//¾Æ´Ï¸é sum¿¡ ´©ÀûÇØÁØ´Ù. ¹İº¹ÀÌ ³¡³ª¸é cnt¸¦ ¸®ÅÏÇÑ´Ù.
+//10. ë§ˆêµ¬ê°„ ì •í•˜ê¸°(ê²°ì •ì•Œê³ ë¦¬ì¦˜)
 
 public class Ex10 {
-	public static int count(int[] arr, int capacity) {
-		int cnt=1, sum=0;
-		for(int x: arr) {
-			if(sum+x>capacity) {
-				cnt++;
-				sum=x;
-			}
-			else sum+=x;
-		}
-		return cnt;
-	}
-	
-	public static int solution(int n,int m, int[] arr) {
-		int answer=0;
-		int lt=Arrays.stream(arr).max().getAsInt();
-		int rt=Arrays.stream(arr).sum();
-		while(lt<=rt) {
-			int mid=(lt+rt)/2;
-			if(count(arr,mid)<=m) {
-				answer=mid;
-				rt=mid-1;
-			}
-			else lt=mid+1;
-		}
-		return answer;
-	}
 	
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
@@ -49,7 +13,33 @@ public class Ex10 {
 		int m = kb.nextInt();
 		int[] arr=new int[n];
 		for(int i=0;i<n;i++) arr[i]=kb.nextInt();
-		System.out.println(solution(n, m, arr));
+		
+		Arrays.sort(arr);
+		int lt=1;
+		int rt=arr[arr.length-1];
+		int answer=0;
+		while(lt<=rt) {
+			int mid= (lt+rt)/2;
+			if(count(arr,mid)>=m) {
+				answer=mid;
+				lt=mid+1;
+			}else {
+				rt=mid-1;
+			}
+		}
+		System.out.println(answer);
+	}
+
+	private static int count(int[] arr, int mid) {
+		int start=arr[0];
+		int cnt =1;
+		for(int i=1;i<arr.length;i++) {
+			if(arr[i]-start>=mid) {
+				cnt++;
+				start=arr[i];
+			}
+		}
+		return cnt;
 	}
 
 }
