@@ -3,54 +3,45 @@ package sortingSearching;
 import java.util.Arrays;
 import java.util.Scanner;
 
-//10.¸¶±¸°£ Á¤ÇÏ±â °áÁ¤¾Ë°í¸®Áò
-//¸¶±¸°£ ¸» ¸¶±¸°£ ÁÂÇ¥ ÀÔ·Â¹Ş¾Æ ÃÖ´ë°Å¸®¸®ÅÏ
-//Á¤·ÄÇØ¼­ lt´Â 1 rt´Â ¹è¿­ÀÇ ¸¶Áö¸· ÃÊ±âÈ­
-//rt°¡ Å©°Å³ª °°À» ¶§ ¹İÀ¸·Î ÂÉ°µ°Ô ÃÖ´ë°Å¸®
-//count ÇÔ¼ö ¹è¿­°ú °Å¸®¸¦ ³Ñ°Ü ¸»ÀÇ ¼öº¸´Ù Å©°Å³ª °°À¸¸é À¯È¿ÇÑ°Å´Ù
-//ÂÉ°µ°É ´äÀ¸·Î ÇÏ°í lt¸¦ ´Ã¸°´Ù
-//¾Æ´Ï¸é  rt¸¦ ÁÙÀÎ´Ù.
-//
-//count ÇÔ¼ö´Â ¹è¿­°ú °Å¸®¸¦ ³Ñ°Ü¹Ş¾Æ ¸»ÀÇ ¼ö1·Î ÃÊ±âÈ­
-//¹è¿­ 0¹øÂ°¿¡ ¹èÄ¡
-//1ºÎÅÍ ¹è¿­±æÀÌ±îÁö ¹İº¹ i¹øÂ°¿Í ±âÁØÁ¡ÀÇ °Å¸®°¡ ÃÖ´ë°Å¸®º¸´ÙÅ©°Å³ª °°À¸¸é À¯È¿ÇÑ°Í 
-//cnt++ÇÏ°í ±âÁØÁ¡À» i¹ø¤Š·Î ¹Ù²Û´Ù.
+//9. ë®¤ì§ë¹„ë””ì˜¤(ê²°ì •ì•Œê³ ë¦¬ì¦˜)
 public class Ex9 {
-	public static int count(int[] arr, int dist) {
-		int cnt=1;
-		int ep=arr[0];
-		for(int i=1; i<arr.length; i++){
-			if(arr[i]-ep>=dist){
-				cnt++;
-				ep=arr[i];
-			}
-		}
-		return cnt;
-	}
-	
-	public static int solution(int n,int c, int[] arr) {
-		int answer=0;
-		Arrays.sort(arr);
-		int lt=1;
-		int rt=arr[n-1];
-		while(lt<=rt){
-			int mid=(lt+rt)/2;
-			if(count(arr, mid)>=c){
-				answer=mid;
-				lt=mid+1;
-			}
-			else rt=mid-1;
-		}
-		return answer;
-	}
-	
+
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 		int n = kb.nextInt();
-		int c = kb.nextInt();
-		int[] arr=new int[n];
-		for(int i=0;i<n;i++) arr[i]=kb.nextInt();
-		System.out.println(solution(n, c, arr));
+		int m = kb.nextInt();
+		int[] arr = new int[n];
+		for (int i = 0; i < n; i++)
+			arr[i] = kb.nextInt();
+
+		int lt = Arrays.stream(arr).max().getAsInt();
+		int rt = Arrays.stream(arr).sum();
+		int mid=0;
+		int answer=0;
+		while(lt<=rt){
+			mid= (lt+rt)/2;
+			if(count(arr,mid)<=m) {
+				answer=mid;
+				rt=mid-1;
+			}else {
+				lt=mid+1;
+			}
+		}
+		System.out.println(answer);
+	}
+
+	private static int count(int[] arr, int mid) {
+		int cnt=1;
+		int sum=0;
+		for(int x: arr) {
+			if(sum+x>mid) {
+				cnt++;
+				sum=x;
+			}else {
+				sum+=x;
+			}
+		}
+		return cnt;
 	}
 
 }

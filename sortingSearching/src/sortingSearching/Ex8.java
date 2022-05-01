@@ -27,10 +27,9 @@ public class Ex8 {
 			} else if (arr[mid] > m) {
 				rt = mid - 1;
 			} else {
-				lt= mid+1;
+				lt = mid + 1;
 			}
 		}
 		System.out.println(answer);
 	}
-
 }
