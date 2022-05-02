@@ -4,20 +4,20 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//1.Àç±ÍÇÔ¼ö
-//Ãâ·ÂÀ» Àç±ÍÇÔ¼ö ¹Ø¿¡¼­ ÇØ¾ß ½ºÅÃ¿¡ ½×ÀÌ¸é¼­ 1,2,3 ÂïÈû
+//1.ìž¬ê·€í•¨ìˆ˜
 public class Ex1 {
-	public void DFS(int n) {
-		if (n == 0)
+	
+	public static void DFS(int n) {
+		if(n==0) {
 			return;
-		else {
-			DFS(n - 1);
-			System.out.print(n + " ");
+		}else {
+			DFS(n-1);
+			System.out.print(n+" ");
 		}
 	}
 
 	public static void main(String[] args) {
-		Ex1 T = new Ex1();
-		T.DFS(3);
+		DFS(3);
+		
 	}
 }
