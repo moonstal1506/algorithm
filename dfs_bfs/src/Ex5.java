@@ -1,7 +1,4 @@
-
-
-//5.ÀÌÁøÆ®¸®¼øÈ¸
-//¾ğÁ¦Ãâ·ÂÇÏ´À³Ä¿¡ µû¶ó ½ºÅÃ¿¡ ½×ÀÌ´Â ¼ø¼­°¡ ´Ş¶óÁü
+//5. ì´ì§„íŠ¸ë¦¬ìˆœíšŒ(DFS : Depth-First Search)
 public class Ex5 {
     Node root; 
     public void DFS(Node root){ 

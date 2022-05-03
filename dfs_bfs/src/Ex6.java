@@ -1,31 +1,33 @@
 
 
-//6.ºÎºÐÁýÇÕ±¸ÇÏ±â
+//6. ë¶€ë¶„ì§‘í•© êµ¬í•˜ê¸°(DFS)
 
 public class Ex6 {
-	static int n;
-	static int[] ch;
-	public void DFS(int L){
-		if(L==n+1){ //¸»´Ü³ëµå
-			String tmp="";
-			for(int i=1; i<=n; i++){
-				if(ch[i]==1) tmp+=(i+" ");
+	public static int n;
+	public static int[] ch;
+	public static void DFS(int L) {
+		if(L==n+1) {
+			String answer="";
+			for(int i=1;i<=n;i++) {
+				if(ch[i]==1) {
+					answer += i+" ";
+				}
 			}
-			if(tmp.length()>0) System.out.println(tmp);
-		}
-		else{
-			ch[L]=1;//»ç¿ëÇÑ´Ù
+			System.out.println(answer);
+		}else {
+			ch[L]=1;
 			DFS(L+1);
-			ch[L]=0;//¾ÈÇÑ´Ù
+			ch[L]=0;
 			DFS(L+1);
 		}
 	}
 
 	public static void main(String[] args){
-		Ex6 T = new Ex6();
 		n=3;
-		ch=new int[n+1]; //ÀÎµ¦½º1ºÎÅÍ ½ÃÀÛ
-		T.DFS(1);
-	}	
+		ch= new int[n+1];
+		DFS(1);
+		
+	}
+	
 }
 
