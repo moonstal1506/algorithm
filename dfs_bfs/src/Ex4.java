@@ -4,37 +4,51 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//4.ÇÇº¸³ªÄ¡ Àç±Í
-//2¹ø¤Š ¾Õ¿¡ °Í°ú ¹Ù·Î ¾ÕÀÇ °ªÀ» ´õÇØ Ãâ·Â
-//Æ®¸® ±×·Áº¸¸é ¾Ë ¼ö ÀÖÀ½
+//4. í”¼ë³´ë‚˜ì¹˜ ì¬ê·€(ë©”ëª¨ì´ì œì´ì…˜)
 public class Ex4 {
-//	public int DFS(int n){
-//		if(n==1) return 1;
-//		else if(n==2) return 1;
-//		else return DFS(n-2)+DFS(n-1);
-//	}
-//	public static void main(String[] args){
-//		Ex4 T = new Ex4();
-//		int n=10;
-//		for(int i=1; i<=n; i++) System.out.print(T.DFS(i)+" ");
-//	}	
-	
-	
-//	¹è¿­¿¡ ´ãÇÏµÎ°í ±¸ÇØ³õÀº°Í ÀçÈ°¿ëÇÏ±â
-//	Àç±Í¼º´É ¾ÈÁÁÀ½ ½ºÅÃ¿¡ ½×ÀÌ±â ¶§¹®
+
+	// public static int DFS(int n) {
+	//
+	// if (n == 1) {
+	// return 1;
+	// } else if (n == 2) {
+	// return 1;
+	// } else {
+	// return DFS(n - 2) + DFS(n - 1);
+	// }
+	//
+	// }
+	//
+	// public static void main(String[] args) {
+	// int n = 5;
+	// for (int i = 1; i <= n; i++) {
+	// System.out.print(DFS(i)+" ");
+	// }
+	// }
+
 	static int[] fibo;
-	public int DFS(int n){
-		if(fibo[n]>0) return fibo[n];//0º¸´Ù Å©´Ù´Â°Ç ÀÌ¹Ì ±¸ÇØ³ù´Ù´Â °Í
-		if(n==1) return fibo[n]=1;
-		else if(n==2) return fibo[n]=1;
-		else return fibo[n]=DFS(n-2)+DFS(n-1);
+
+	public static int DFS(int n) {
+		if(fibo[n]!=0) {
+			return fibo[n];
+		}
+		if (n == 1) {
+			return fibo[n] = 1;
+		} else if (n == 2) {
+			return fibo[n] = 1;
+		} else {
+			return fibo[n] = DFS(n - 2) + DFS(n - 1);
+		}
+
 	}
-	public static void main(String[] args){
-		Ex4 T = new Ex4();
-		int n=45;
-		fibo=new int[n+1];//1ºÎÅÍ »ç¿ëÇÒ°Å¶ó
-		T.DFS(n);
-		for(int i=1; i<=n; i++) System.out.print(fibo[i]+" ");
-	}	
-	
+
+	public static void main(String[] args) {
+		int n = 5;
+		fibo = new int[n + 1];
+		DFS(n);
+		for (int i = 1; i <= n; i++) {
+			System.out.print(fibo[i] + " ");
+		}
+	}
+
 }
