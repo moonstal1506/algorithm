@@ -1,26 +1,33 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-//7. ÀÌÁøÆ®¸® ·¹º§Å½»ö
+//7. ì´ì§„íŠ¸ë¦¬ ë ˆë²¨íƒìƒ‰(BFS : Breadth-First Search)
 
 public class Ex7 {
     Node root; 
+    
     public void BFS(Node root){ 
-		Queue<Node> Q=new LinkedList<>();//Å¥¸¦ ¾¸
-		Q.add(root);
-		int L=0; //ÃÖ»ó´Ü ³ëµå 0 
-        while(!Q.isEmpty()){ //ºñ¾îÀÖÁö ¾ÊÀ» ¶§±îÁö
-            int len = Q.size();
+		int L=0;
+		Queue<Node> q = new LinkedList<>();
+		q.add(root);
+		while(!q.isEmpty()) {
 			System.out.print(L+" : ");
-            for(int i=0; i<len; i++){
-                Node cur = Q.poll();
-                System.out.print(cur.data+" ");
-                if(cur.lt!=null) Q.add(cur.lt);//µÚ¿¡ ³Ö¾îÁÜ
-                if(cur.rt!=null) Q.add(cur.rt);
-            }
-			L++;//·¹º§ Áõ°¡ 
+			int len =q.size();
+			for(int i = 0; i < len; i++) {
+				Node node = q.poll();
+				System.out.print(node.data + " ");
+				if(node.lt!=null) {
+					q.add(node.lt);
+					
+				}
+				if(node.rt!=null) {
+					q.add(node.rt);
+				}
+			}
+			L++;
 			System.out.println();
-        }
+		}
+        
     } 
   
     public static void main(String args[]) { 
