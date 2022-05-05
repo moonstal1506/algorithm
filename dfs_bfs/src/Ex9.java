@@ -1,15 +1,13 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
-
-//9. ¸»´Ü³ëµå±îÁöÀÇ °¡Àå ÂªÀº °æ·ÎDFS
-//ÃÖ´Ü°Å¸®´Â bfs·Î Ç®¾î¾ßÇÏ±äÇÔ
+//9. Tree ë§ë‹¨ë…¸ë“œê¹Œì§€ì˜ ê¹Œì¥ ì§§ì€ ê²½ë¡œ(DFS)
 
 public class Ex9 {
 	Node root; 
     public int DFS(int L, Node root){ 
-        if(root.lt==null && root.rt==null) return L; //¸»´Ü ³ëµåÀÏ¶§ ¸®ÅÏ
-		else return Math.min(DFS(L+1, root.lt), DFS(L+1, root.rt));//·¹º§Áõ°¡½ÃÄÑ ¿ŞÂÊ ¿À¸¥ÂÊ »¸¾î³ª°¨ ÀÛÀº°ª ¸®ÅÏ¹ŞÀ½
+       if(root.lt==null && root.rt==null ) {
+    	   return L;
+       }else {
+    	   return Math.min(DFS(L+1, root.lt), DFS(L+1, root.rt));
+       }
     } 
   
     public static void main(String args[]) { 
@@ -19,6 +17,6 @@ public class Ex9 {
         tree.root.rt=new Node(3); 
         tree.root.lt.lt=new Node(4); 
         tree.root.lt.rt=new Node(5); 
-        System.out.println(tree.DFS(0, tree.root)); //·¹º§ÀÌ¶û ·çÆ®³ëµå ³Ñ±è ÃÖÁ¾¸®ÅÏ¹Ş´Â°Í Ãâ·Â
+        System.out.println(tree.DFS(0, tree.root));
     } 
 } 
