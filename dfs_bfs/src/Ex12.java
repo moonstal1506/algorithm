@@ -2,20 +2,23 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-//12. °æ·ÎÅ½»ö
+//12. ê²½ë¡œíƒìƒ‰(DFS)
 public class Ex12 {
 	static int n, m, answer=0;
 	static int[][] graph;
 	static int[] ch;
 	
-	public void DFS(int v){//ÇöÀç
-		if(v==n) answer++;//ÇöÀç ÁöÁ¡ÀÌ ³¡±îÁö ¿Ô´Â°¡?
-		else{
-			for(int i=1; i<=n; i++){
-				if(graph[v][i]==1 && ch[i]==0){//°¥¼ö ÀÖ¾î¾ßÇÏ°í&&¹æ¹®ÇßÀ¸¸é ¾ÈµÊ
-					ch[i]=1;//¹æ¹®Ã¼Å©
-					DFS(i);//i·Î ÀÌµ¿ i°¡v·Î ´Ù½Ã È£Ãâ
-					ch[i]=0;//backÇÏ´Â ½ÃÁ¡ ´Ù½Ã Ã¼Å© Ãë¼Ò
+	public void DFS(int v){
+		if(v==n) {
+			answer++;
+		} else {
+			for(int i=1;i<=n;i++) {
+				if(graph[v][i]==1 &&ch[i]==0) {
+					ch[i]=1;
+					DFS(i);
+					ch[i]=0;
+					
+					
 				}
 			}
 		}
@@ -24,17 +27,17 @@ public class Ex12 {
 	public static void main(String[] args){
 		Ex12 T = new Ex12();
 		Scanner kb = new Scanner(System.in);
-		n=kb.nextInt();//Á¤Á¡°³¼ö
-		m=kb.nextInt();//°£¼±°³¼ö
-		graph=new int[n+1][n+1];//1¹øºÎÅÍ ½ÃÀÛ
-		ch=new int[n+1];//Ã¼Å©
-		for(int i=0; i<m; i++){//ÇöÀç
+		n=kb.nextInt();
+		m=kb.nextInt();
+		graph=new int[n+1][n+1];
+		ch=new int[n+1];
+		for(int i=0; i<m; i++){
 			int a=kb.nextInt();
 			int b=kb.nextInt();
-			graph[a][b]=1;//°¡´É ¹æÇâ Ã¼Å©
+			graph[a][b]=1;
 		}
-		ch[1]=1;//Ãâ¹ßÁ¡ Ã¼Å©
-		T.DFS(1);//1¹ø ³Ñ±è
+		ch[1]=1;
+		T.DFS(1);
 		System.out.println(answer);
 	}	
 }
