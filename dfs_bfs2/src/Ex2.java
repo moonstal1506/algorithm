@@ -1,29 +1,30 @@
 
 import java.util.Scanner;
 
-//2. ¹ÙµÏÀÌ ½ÂÂ÷
-//ºÎºÐÁýÇÕÀÇ ÇÕ
+//2. ë°”ë‘‘ì´ ìŠ¹ì°¨(DFS)
 public class Ex2 {
-	static int answer=Integer.MIN_VALUE, c, n;
-	public void DFS(int L, int sum, int[] arr){
-		if(sum>c) return;//ÇÕÀÌ ÃÖ´ë ¹«°Ôº¸´Ù Å©¸é ¸®ÅÏ
-		if(L==n){//5¸¶¸®°¡ µÇ¾úÀ» ¶§
-			answer=Math.max(answer, sum);//ºÎºÐÁýÇÕÀÌ ¸¸µé¾îÁú ¶§¸¶´Ù ºñ±³
+	static int answer = 0;
+	static int c, n;
+
+	public void DFS(int L, int sum, int[] arr) {
+		if (sum > c)
+			return;
+		if (L == n) {
+			answer = Math.max(answer, sum);
+		} else {
+			DFS(L + 1, sum + arr[L], arr);
+			DFS(L + 1, sum, arr);
 		}
-		else{
-			DFS(L+1, sum+arr[L], arr);//Ãß°¡ÇÑ´Ù
-			DFS(L+1, sum, arr);//Ãß°¡ÇÏÁö ¾Ê´Â´Ù
-		}	
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		Ex2 T = new Ex2();
 		Scanner kb = new Scanner(System.in);
-		c=kb.nextInt();
-		n=kb.nextInt();
-		int[] arr=new int[n];
-		for(int i=0; i<n; i++){
-			arr[i]=kb.nextInt();
+		c = kb.nextInt();
+		n = kb.nextInt();
+		int[] arr = new int[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = kb.nextInt();
 		}
 		T.DFS(0, 0, arr);
 		System.out.println(answer);

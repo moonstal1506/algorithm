@@ -16,7 +16,7 @@ public class Ex1 {
 		if(flag) return;
 		if(sum>total/2) return;
 		if(L==n) {
-			if(total/2==sum) {
+			if(total-sum==sum) {
 				answer="YES";
 				flag=true;
 			}
