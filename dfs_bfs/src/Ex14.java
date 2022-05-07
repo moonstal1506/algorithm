@@ -3,24 +3,27 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-//14. ±◊∑°«¡ √÷¥‹∞≈∏Æbfs
+//14. Í∑∏ÎûòÌîÑ ÏµúÎã®Í±∞Î¶¨(BFS)
 public class Ex14 {
 
 		static int n, m=0;
 		static ArrayList<ArrayList<Integer>> graph;
 		static int[] ch, dis;
 		public void BFS(int v){
-			ch[v]=1;//√‚πﬂ¡ˆ √º≈©
-			dis[v]=0;//v±Ó¡ˆ ∞°¥¬ √÷º“ ∞≈∏Æ
-			Queue<Integer> queue=new LinkedList<>();
-			queue.offer(v);
-			while(!queue.isEmpty()){
-				int cv=queue.poll();
-				for(int nv : graph.get(cv)){
-					if(ch[nv]==0){
+			ch[v]=1;
+			dis[v]=0;
+			Queue<Integer> q = new LinkedList<>();
+			q.add(v);
+			while(!q.isEmpty()) {
+				int cv= q.poll();
+				for(int nv : graph.get(cv)) {
+					if(ch[nv]==0) {
+						//Ï≤¥ÌÅ¨
 						ch[nv]=1;
-						queue.offer(nv);
-						dis[nv]=dis[cv]+1;//«ˆ¿Á±Ó¡ˆ∞≈∏Æ+1=¥Ÿ¿Ω∞≈∏Æ
+						//ÎÑ£Í∏∞
+						q.add(nv);
+						//Í±∞Î¶¨
+						dis[nv]=dis[cv]+1;
 					}
 				}
 			}
@@ -29,12 +32,12 @@ public class Ex14 {
 		public static void main(String[] args){
 			Ex14 T = new Ex14();
 			Scanner kb = new Scanner(System.in);
-			n=kb.nextInt();//¡§¡°
-			m=kb.nextInt();//∞£º±
+			n=kb.nextInt();
+			m=kb.nextInt();
 			graph=new ArrayList<ArrayList<Integer>>();
 			for(int i=0; i<=n; i++){
 				graph.add(new ArrayList<Integer>());
-			}//¿Œ¡¢∏ÆΩ∫∆Æ
+			}
 			ch=new int[n+1];
 			dis=new int[n+1];
 			for(int i=0; i<m; i++){
