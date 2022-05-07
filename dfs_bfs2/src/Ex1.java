@@ -4,35 +4,37 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//1.ÇÕÀÌ °°Àº ºÎºÐÁýÇÕ
+//1. í•©ì´ ê°™ì€ ë¶€ë¶„ì§‘í•©
+//Lì´ nê¹Œì§€ ê°”ì„ ë•Œ í•©ì´ ë°˜ê³¼ ê°™ìœ¼ë©´ yes
+//flag trueë¡œ ë‹¤ ë¦¬í„´ ì‹œì¼œ+ sumì´ ì»¤ë„ ë¦¬í„´
+//ì•„ë‹ˆë¼ë©´ ë”í•œë‹¤ ë”í•˜ì§€ ì•ŠëŠ”ë‹¤
 public class Ex1 {
 	static String answer="NO";
 	static int n, total=0;
 	boolean flag=false;
-	public void DFS(int L, int sum, int[] arr){
+	public void DFS(int L, int sum ,int[] arr){
 		if(flag) return;
-		if(sum>total/2) return;//sumº¸´Ù Ä¿Áö¸é ´õ ÇÒ ÇÊ¿ä ¾øÀ½ 
-		if(L==n){//¿ø¼Ò°³¼ö°¡ µÇ¾úÀ» ¶§
-			if((total-sum)==sum) {//ÃÑÇÕÀÌ ¹ÝÀÌ¸é
-				answer="YES";//¿¹½º
+		if(sum>total/2) return;
+		if(L==n) {
+			if(total/2==sum) {
+				answer="YES";
 				flag=true;
-			}	
-		}
-		else{
-			DFS(L+1, sum+arr[L], arr);//ÁýÇÕ¿¡ ³Ö´Â´Ù ¹è¿­ÀÇ °ª
-			DFS(L+1, sum, arr);//³ÖÁö ¾Ê´Â´Ù
+			}
+		}else {
+			DFS(L+1,sum+arr[L],arr);
+			DFS(L+1,sum,arr);
 		}
 	}
 	public static void main(String[] args){
 		Ex1 T = new Ex1();
 		Scanner kb = new Scanner(System.in);
-		n=kb.nextInt();//¿ø¼Ò°³¼ö
+		n=kb.nextInt();
 		int[] arr=new int[n];
 		for(int i=0; i<n; i++){
 			arr[i]=kb.nextInt();
 			total+=arr[i];
 		}
-		T.DFS(0, 0, arr);//¿ø¼Ò°³¼ö 0, ÇÕ 0
+		T.DFS(0, 0, arr);
 		System.out.println(answer);
 	}
 }
