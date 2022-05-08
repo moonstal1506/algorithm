@@ -1,34 +1,35 @@
 
 import java.util.Scanner;
 
-//3. ÃÖ´ëÁ¡¼ö ±¸ÇÏ±â
-//¾Õ¹®Á¦¿¡¼­ Á¦ÇÑ½Ã°£¸¸ Ãß°¡ÇØ¼­ ÇÏ¸é µÊ
+//3. ìµœëŒ€ì ìˆ˜ êµ¬í•˜ê¸°(DFS)
 public class Ex3 {
 	static int answer=Integer.MIN_VALUE, n, m;
-	boolean flag=false;
-	public void DFS(int L, int sum, int time, int[] ps, int[] pt){
-		if(time>m) return;
-		if(L==n){
-			answer=Math.max(answer, sum);
+	static int[] a;
+	static int[] b;
+	private void DFS(int L, int sum, int time) {
+		if(time>m) {
+			return;
 		}
-		else{
-			DFS(L+1, sum+ps[L], time+pt[L], ps, pt);//¹®Á¦¸¦ Ç¬´Ù
-			DFS(L+1, sum, time, ps, pt);//Ç®Áö ¾Ê´Â´Ù
+		if(L==n) {
+			answer = Math.max(answer, sum);
+		}else {
+			DFS(L+1,sum+a[L],time+b[L]);
+			DFS(L+1,sum,time);
 		}
 	}
 
 	public static void main(String[] args){
 		Ex3 T = new Ex3();
 		Scanner kb = new Scanner(System.in);
-		n=kb.nextInt();//¹®Á¦°³¼ö
-		m=kb.nextInt();//Á¦ÇÑ½Ã°£
-		int[] a=new int[n];//Á¡¼ö
-		int[] b=new int[n];//Á¦ÇÑ½Ã°£
+		n=kb.nextInt();
+		m=kb.nextInt();
+		a=new int[n];
+		b=new int[n];
 		for(int i=0; i<n; i++){
 			a[i]=kb.nextInt();
 			b[i]=kb.nextInt();
 		}
-		T.DFS(0, 0, 0, a, b);
+		T.DFS(0, 0, 0);
 		System.out.println(answer);
 	}
 }
