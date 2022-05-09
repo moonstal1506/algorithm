@@ -3,30 +3,29 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
-//5.µø¿¸±≥»Ø
+//5. ÎèôÏ†ÑÍµêÌôò
 public class Ex5 {
 	static int n, m, answer=Integer.MAX_VALUE;
 	public void DFS(int L, int sum, Integer[] arr){
-		if(sum>m) return;//∏ÿ√ﬂ±‚
-		if(L>=answer) return;//∏ÿ√ﬂ±‚
-		if(sum==m){//∞≈Ω∫∏ßµ∑ √Ê¡∑
-			answer=Math.min(answer, L);//√÷º“ ∏Ó∞≥
-		}
-		else{
-			for(int i=0; i<n; i++){
-				DFS(L+1, sum+arr[i], arr);
+		if(L>=answer) return;
+		if(sum>m) return;
+		if(sum==m) {
+			answer= Math.min(answer, L);
+		}else {
+			for(int i=0;i<n;i++) {
+				DFS(L+1,sum+arr[i],arr);
 			}
-		}	
+		}
 	}
 	public static void main(String[] args){
 		Ex5 T = new Ex5();
 		Scanner kb = new Scanner(System.in);
-		n=kb.nextInt();//µø¿¸ ¡æ∑˘∞≥ºˆ
-		Integer[] arr=new Integer[n];//¡§∑ƒ«œ∑¡∏È Integer ∞¥√º«¸ ±‚∫ª«¸ æ»µ 
+		n=kb.nextInt();
+		Integer[] arr=new Integer[n];
 		for(int i=0; i<n; i++) arr[i]=kb.nextInt();
-		Arrays.sort(arr, Collections.reverseOrder());//≈´ ±›æ◊∫Œ≈Õ ¡§∑ƒ«œ∏È ¥ı ª°∏Æ √£¿ª ºˆ ¿÷¥Ÿ.
-		m=kb.nextInt();//∞≈Ω∫∏ßµ∑
-		T.DFS(0, 0, arr);//µø¿¸ ∞≥ºˆ,«’, µø¿¸¡æ∑˘¥„¿∫ πËø≠
+		Arrays.sort(arr, Collections.reverseOrder());
+		m=kb.nextInt();
+		T.DFS(0, 0, arr);
 		System.out.println(answer);
 	}
 }
