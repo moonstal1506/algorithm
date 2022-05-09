@@ -22,7 +22,9 @@ public class Ex5 {
 		Scanner kb = new Scanner(System.in);
 		n=kb.nextInt();
 		Integer[] arr=new Integer[n];
-		for(int i=0; i<n; i++) arr[i]=kb.nextInt();
+		for(int i=0; i<n; i++) {
+			arr[i]=kb.nextInt();
+		}
 		Arrays.sort(arr, Collections.reverseOrder());
 		m=kb.nextInt();
 		T.DFS(0, 0, arr);

@@ -3,22 +3,23 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
-//6.¼ø¿­ ±¸ÇÏ±â
+//6. ìˆœì—´ êµ¬í•˜ê¸°
 public class Ex6 {
 	static int[] pm, ch, arr;
 	static int n, m;
 	public void DFS(int L){
-		if(L==m){
-			for(int x : pm) System.out.print(x+" ");
+		if(L==m) {
+			for(int x:pm) {
+				System.out.print(x+" ");
+			}
 			System.out.println();
-		}
-		else{
-			for(int i=0; i<n; i++){
-				if(ch[i]==0){
-					ch[i]=1;//Ã¼Å©
+		}else {
+			for(int i=0;i<n;i++) {
+				if(ch[i]==0) {
+					ch[i]=1;
 					pm[L]=arr[i];
 					DFS(L+1);
-					ch[i]=0;//Ã¼Å© Áö¿ì±â
+					ch[i]=0;
 				}
 			}
 		}
