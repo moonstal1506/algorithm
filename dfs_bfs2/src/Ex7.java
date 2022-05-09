@@ -3,21 +3,28 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
-//7.Á¶ÇÕ¼ö
+//7. ì¡°í•©ìˆ˜(ë©”ëª¨ì´ì œì´ì…˜)
 //nCr=n-1Cr-1 + n-1Cr
-//(5C3ÀÌ¶ó¸é 5¸¦ ±âÁØÀ¸·Î »Ì¾ÒÀ» °æ¿ì´Â2¸í¸¸ »ÌÀ¸¸é µÊ+¾È»Ì¾ÒÀ¸¸é 3¸í »Ì¾Æ¾ßÇÔ)
+
 public class Ex7 {
-	int[][] dy=new int[35][35];
-	public int DFS(int n, int r){
-		if(dy[n][r]>0) return dy[n][r];//ÀÌ¹Ì ±¸ÇÑ °Í ¸®ÅÏ ¸Þ¸ðÀÌÁ¦ÀÌ¼Ç
-		if(n==r || r==0) return 1;//1ÀÏ¶§
-		else return dy[n][r]=DFS(n-1, r-1)+DFS(n-1, r);
+	int[][] dy = new int[35][35];
+
+	public int DFS(int n, int r) {
+		if (dy[n][r] > 0) {
+			return dy[n][r];
+		}
+		if (n == r || r == 0) {
+			return 1;
+		} else {
+			return dy[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r);
+		}
 	}
-	public static void main(String[] args){
+
+	public static void main(String[] args) {
 		Ex7 T = new Ex7();
 		Scanner kb = new Scanner(System.in);
-		int n=kb.nextInt();
-		int r=kb.nextInt();
+		int n = kb.nextInt();
+		int r = kb.nextInt();
 		System.out.println(T.DFS(n, r));
 	}
 }
