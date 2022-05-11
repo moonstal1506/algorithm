@@ -3,38 +3,39 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
-//10.¹Ì·Î Å½»ö
+//ë¯¸ë¡œíƒìƒ‰(DFS)
 public class Ex10 {
-	static int[] dx={-1, 0, 1, 0};
-	static int[] dy={0, 1, 0, -1};
+	static int[] dx = { -1, 0, 1, 0 };
+	static int[] dy = { 0, 1, 0, -1 };
 	static int[][] board;
-	static int answer=0;
+	static int answer = 0;
 
-	public void DFS(int x, int y){
-		if(x==7 && y==7) answer++; //µµÂø
-		else{
-			for(int i=0; i<4; i++){//4°³ÀÇ ¹æÇâ È®ÀÎ
-				int nx=x+dx[i];//°¥¹æÇâ Á¤ÇÏ±â
-				int ny=y+dy[i];
-				if(nx>=1 && nx<=7 && ny>=1 && ny<=7 && board[nx][ny]==0){//°¥¼öÀÖ´Â °÷ÀÎÁö È®ÀÎ Çà°ú ¿­¾È¿¡ ÀÖ°í ¹æ¹®ÇÏÁö ¾Ê¾Ò´ø °÷
-					board[nx][ny]=1;//Ã¼Å©
-					DFS(nx, ny);
-					board[nx][ny]=0;//µ¹¾Æ¿Ã¶© Ãë¼Ò
+	public void DFS(int x, int y) {
+		if (x == 7 && y == 7) {
+			answer++;
+		} else {
+			for (int i = 0; i < 4; i++) {
+				int nx = x + dx[i];
+				int ny = y + dy[i];
+				if (1 <= nx && nx <= 7 && 1 <= ny && ny <= 7 && board[nx][ny] == 0) {
+					board[nx][ny] = 1;
+					DFS(nx,ny);
+					board[nx][ny] = 0;
 				}
 			}
-		}	
+		}
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		Ex10 T = new Ex10();
 		Scanner kb = new Scanner(System.in);
-		board=new int[8][8];//1ºÎÅÍ7±îÁö ³ÖÀ»²¨´Ï±î 8°³¸¸µé¾îÁÜ
-		for(int i=1; i<=7; i++){
-			for(int j=1; j<=7; j++){
-				board[i][j]=kb.nextInt();
+		board = new int[8][8];
+		for (int i = 1; i <= 7; i++) {
+			for (int j = 1; j <= 7; j++) {
+				board[i][j] = kb.nextInt();
 			}
 		}
-		board[1][1]=1;//½ÃÀÛÁöÁ¡
+		board[1][1] = 1;
 		T.DFS(1, 1);
 		System.out.print(answer);
 	}
