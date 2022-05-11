@@ -1,3 +1,5 @@
+package dfs_bfs2;
+
 
 import java.util.Scanner;
 

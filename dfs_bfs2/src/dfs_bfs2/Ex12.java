@@ -1,15 +1,17 @@
+package dfs_bfs2;
+
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-//12.Åä¸¶Åä
+//12.ï¿½ä¸¶ï¿½ï¿½
 public class Ex12 {
 	static int[] dx={-1, 0, 1, 0};
 	static int[] dy={0, 1, 0, -1};
 	static int[][] board, dis;
 	static int n, m;
-	static Queue<Point> Q=new LinkedList<>();//main¿¡¼­µµ Á¢±Ù static
+	static Queue<Point> Q=new LinkedList<>();//mainï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ static
 	public void BFS(){
 		while(!Q.isEmpty()){
 			Point tmp=Q.poll();
@@ -18,8 +20,8 @@ public class Ex12 {
 				int ny=tmp.y+dy[i];
 				if(nx>=0 && nx<n && ny>=0 && ny<m && board[nx][ny]==0){
 					board[nx][ny]=1;
-					Q.offer(new Point(nx, ny));//ÀÍÀº°Å ³Ö¾îÁÖ°í
-					dis[nx][ny]=dis[tmp.x][tmp.y]+1;// ³¯Â¥+1
+					Q.offer(new Point(nx, ny));//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ö°ï¿½
+					dis[nx][ny]=dis[tmp.x][tmp.y]+1;// ï¿½ï¿½Â¥+1
 				}
 			}
 		}	
@@ -35,7 +37,7 @@ public class Ex12 {
 		for(int i=0; i<n; i++){
 			for(int j=0; j<m; j++){
 				board[i][j]=kb.nextInt();
-				if(board[i][j]==1) Q.offer(new Point(i, j));//ÀÍÀº °Íµé À§Ä¡ ³Ö¾îµÎ±â
+				if(board[i][j]==1) Q.offer(new Point(i, j));//ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½ ï¿½ï¿½Ä¡ ï¿½Ö¾ï¿½Î±ï¿½
 			}
 		}
 		T.BFS();
@@ -43,13 +45,13 @@ public class Ex12 {
 		int answer=Integer.MIN_VALUE;
 		for(int i=0; i<n; i++){
 			for(int j=0; j<m; j++){
-				if(board[i][j]==0) flag=false;//ÀÍÁö ¾ÊÀº°Ô ÀÖ´Ù
+				if(board[i][j]==0) flag=false;//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½
 			}
 		}
-		if(flag){//ÀÍ¾úÀ¸¸é
+		if(flag){//ï¿½Í¾ï¿½ï¿½ï¿½ï¿½ï¿½
 			for(int i=0; i<n; i++){
 				for(int j=0; j<m; j++){
-					answer=Math.max(answer, dis[i][j]);//disÆÇ¿¡ ÀÍÀº ³¯Â¥ ÀûÈù°Å
+					answer=Math.max(answer, dis[i][j]);//disï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				}
 			}
 			System.out.println(answer);

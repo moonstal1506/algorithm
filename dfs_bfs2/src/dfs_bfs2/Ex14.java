@@ -1,12 +1,14 @@
+package dfs_bfs2;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//14. ÇÇÀÚ¹è´ÞDFS
-//ÇÇÀÚÁýÁ¶ÇÕ±¸ÇÏ±â 6C4
-//°Å¸®±¸ÇÏ±â 
-//ÇÕ¿¡ ´©Àû
-//ÇÕ ÃÖ¼Ò
+//14. ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½DFS
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ±ï¿½ï¿½Ï±ï¿½ 6C4
+//ï¿½Å¸ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ 
+//ï¿½Õ¿ï¿½ ï¿½ï¿½ï¿½ï¿½
+//ï¿½ï¿½ ï¿½Ö¼ï¿½
 
 public class Ex14 {
 	static int n, m, len, answer = Integer.MAX_VALUE;
@@ -14,18 +16,18 @@ public class Ex14 {
 	static ArrayList<Point> hs, pz;
 
 	public void DFS(int L, int s) {
-		if (L == m) {// »ì·Á¾ßÇÒ ÇÇÀÚÁý °³¼ö 4 ´Ù µÆÀ» ¶§ Á¶ÇÕ¿Ï¼º
+		if (L == m) {// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 4 ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Õ¿Ï¼ï¿½
 			int sum = 0;
-			for (Point h : hs) {// ÁýÀÌ ±âÁØÀÌ¾ú´Ù.
+			for (Point h : hs) {// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½.
 				int dis = Integer.MAX_VALUE;
-				for (int i : combi) {// ÀÎµ¦½º¹øÈ£
+				for (int i : combi) {// ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½È£
 					dis = Math.min(dis, Math.abs(h.x - pz.get(i).x) + Math.abs(h.y - pz.get(i).y));
 				}
 				sum += dis;
 			}
 			answer = Math.min(answer, sum);
 		} else {
-			for (int i = s; i < len; i++) {// Á¶ÇÕ ÇÇÀÚÁý °³¼ö6°³
+			for (int i = s; i < len; i++) {// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½6ï¿½ï¿½
 				combi[L] = i;
 				DFS(L + 1, i + 1);
 			}
@@ -55,11 +57,3 @@ public class Ex14 {
 	}
 }
 
-class Point {
-	int x, y;
-
-	Point(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-}

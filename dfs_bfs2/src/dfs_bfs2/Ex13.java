@@ -1,18 +1,20 @@
+package dfs_bfs2;
+
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-//13. ¼¶³ª¶ó ¾ÆÀÏ·£µåDFS
+//13. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½DFS
 public class Ex13 {
 	static int answer=0, n;
-	static int[] dx={-1, -1, 0, 1, 1, 1, 0, -1};//8¹æÇâ
+	static int[] dx={-1, -1, 0, 1, 1, 1, 0, -1};//8ï¿½ï¿½ï¿½ï¿½
 	static int[] dy={0, 1, 1, 1, 0, -1, -1, -1};
 	public void DFS(int x, int y, int[][] board){
-		for(int i=0; i<8; i++){//¹æÇâÁ¤ÇÏ±â
+		for(int i=0; i<8; i++){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 			int nx=x+dx[i];
 			int ny=y+dy[i];
-			if(nx>=0 && nx<n && ny>=0 && ny<n && board[nx][ny]==1){//À°ÁöÀÏ¶§¸¸!!
+			if(nx>=0 && nx<n && ny>=0 && ny<n && board[nx][ny]==1){//ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½!!
 				board[nx][ny]=0;
 				DFS(nx, ny, board);
 			}
@@ -21,9 +23,9 @@ public class Ex13 {
 	public void solution(int[][] board){
 		for(int i=0; i<n; i++){
 			for(int j=0; j<n; j++){
-				if(board[i][j]==1){//À°Áö¸¦ Ã£¾Ò´Ù
+				if(board[i][j]==1){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Ò´ï¿½
 					answer++;
-					board[i][j]=0;//½ÃÀÛÁ¡ 0À¸·Î ¹Ù²ãÁÖ±â
+					board[i][j]=0;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½Ö±ï¿½
 					DFS(i, j, board);
 				}
 			}

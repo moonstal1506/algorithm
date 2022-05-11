@@ -1,9 +1,11 @@
+package dfs_bfs2;
+
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-//13. ¼¶³ª¶ó ¾ÆÀÏ·£µåBFS
+//13. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½BFS
 public class Ex13_2 {
 	
 	static int answer=0, n;
@@ -12,7 +14,7 @@ public class Ex13_2 {
 	Queue<Point> queue = new LinkedList<>();
 	
 	
-	public void BFS(int x, int y, int[][] board){//0À¸·Î ¹Ù²ãÁÙ°Å¾ß
+	public void BFS(int x, int y, int[][] board){//0ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½Ù°Å¾ï¿½
 		queue.add(new Point(x, y));
 		while(!queue.isEmpty()){
 			Point pos = queue.poll();
@@ -30,10 +32,10 @@ public class Ex13_2 {
 	public void solution(int[][] board){	
 		for(int i=0; i<n; i++){
 			for(int j=0; j<n; j++){
-				if(board[i][j]==1){//À°Áö¸¦ ¸¸³ª¸é
+				if(board[i][j]==1){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					answer++;
 					board[i][j]=0;
-					BFS(i, j, board);//³Ñ°Ü
+					BFS(i, j, board);//ï¿½Ñ°ï¿½
 				}
 			}
 		}
