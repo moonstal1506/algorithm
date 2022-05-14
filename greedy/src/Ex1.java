@@ -3,21 +3,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-//1.¾¾¸§¼±¼ö
-//±×¸®µğ  ÇöÀç¿¡¼­ ÃÖ¼±ÀÇ ¼±ÅÃ
-public class Ex1 {
-	public int solution(ArrayList<Body> arr, int n){
-		int cnt=0;
-		Collections.sort(arr);//Å° ³»¸²Â÷¼ø Á¤·Ä
-		int max=Integer.MIN_VALUE; //ÃÖ¼Ò°ª Àû¾î³õ°í
-		for(Body ob : arr){//²¨³»¼­ ¸ö¹«°Ô ºñ±³
-			if(ob.w>max){
-				max=ob.w;
-				cnt++;//Ã¹¹øÂ° »ç¶÷Àº ¹«Á¶°ÇÀÓ
-			}
-		}
-		return cnt;
+//1. ì”¨ë¦„ì„ ìˆ˜
+//ë°”ë”” í´ë˜ìŠ¤ Comparableìƒì† compareTo í‚¤ ë‚´ë¦¼ì°¨ìˆœ êµ¬í˜„
+class Body implements Comparable<Body> {
+	int h;
+	int w;
+	
+	public Body(int h, int w) {
+		this.h = h;
+		this.w = w;
 	}
+
+	@Override
+	public int compareTo(Body body) {
+		return body.h-this.h;
+	}
+	
+}
+
+public class Ex1 {
 
 	public static void main(String[] args){
 		Ex1 T = new Ex1();
@@ -29,18 +33,19 @@ public class Ex1 {
 			int w=kb.nextInt();
 			arr.add(new Body(h, w));
 		}
-		System.out.println(T.solution(arr, n));
+		//ì •ë ¬
+		Collections.sort(arr);
+		//ëª¸ë¬´ê²Œ ì•ì‚¬ëŒê³¼ ë¹„êµ í¬ë©´ ê°€ëŠ¥ cnt ì™€ maxí•„ìš”
+		int cnt=0;
+		int max=Integer.MIN_VALUE;
+		for(Body body : arr) {
+			if(body.w>max) {
+				cnt++;
+				max=body.w;
+			}
+		}
+		
+		System.out.println(cnt);
 	}
 }
 
-class Body implements Comparable<Body>{
-    public int h, w;
-    Body(int h, int w) {
-        this.h = h;
-        this.w = w;
-    }
-    @Override
-    public int compareTo(Body o){
-        return o.h-this.h;//Å° ³»¸²Â÷¼ø Á¤·Ä
-    }
-}
