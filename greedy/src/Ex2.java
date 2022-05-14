@@ -3,23 +3,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-//2. È¸ÀÇ½Ç ¹èÁ¤
-//¸ÕÀú³¡³ª´Â °ÍºÎÅÍ ÇÑ´Ù ±×´ÙÀ½°Ô Å©°Å³ª °°´Ù
-//³¡³ª´Â½Ã°£ÀÌ °°À¸¸é ½ÃÀÛ½Ã°£µµ ¿À¸§Â÷¼ø
-public class Ex2 {
-	public int solution(ArrayList<Time> arr){
-		int cnt=0;
-		Collections.sort(arr);
-		int et=0;
-		for(Time ob : arr){
-			if(ob.s>=et){//½ÃÀÛ½Ã°£ÀÌ ³¡³ª´Â½Ã°£º¸´Ù Å©°Å³ª °°Àº°æ¿ì È¸ÀÇÇÒ ¼ö ÀÖÀ½
-				cnt++;
-				et=ob.e;
-			}
-		}
-		return cnt;
+//2. íšŒì˜ì‹¤ ë°°ì •
+
+//ì‹œì‘ ë, ëìœ¼ë¡œ ì •ë ¬ ê°™ìœ¼ë©´ ì‹œì‘ìœ¼ë¡œ
+class Time implements Comparable<Time>{
+
+	int start;
+	int end;
+	
+	public Time(int start, int end) {
+		this.start = start;
+		this.end = end;
 	}
 
+	@Override
+	public int compareTo(Time o) {
+		if(this.end-o.end==0) {
+			return this.start-o.start;
+		}
+		return this.end-o.end;
+	}
+	
+}
+
+public class Ex2 {
 	public static void main(String[] args){
 		Ex2 T = new Ex2();
 		Scanner kb = new Scanner(System.in);
@@ -30,19 +37,18 @@ public class Ex2 {
 			int y=kb.nextInt();
 			arr.add(new Time(x, y));
 		}
-		System.out.println(T.solution(arr));
+		//ì •ë ¬
+		Collections.sort(arr);
+		//cntë‘ ëì‹œê°„ í•„ìš” ì‹œì‘ì‹œê°„ì´ ì•ì— ëì‹œê°„ê³¼ ê°™ê±°ë‚˜ í¬ë©´ ê°€ëŠ¥
+		int cnt=0;
+		int end=0;
+		for(Time time: arr) {
+			if(time.start>=end) {
+				cnt++;
+				end=time.end;
+			}
+		}
+		System.out.println(cnt);
 	}
 }
 
-class Time implements Comparable<Time>{
-    public int s, e;
-    Time(int s, int e) {
-        this.s = s;
-        this.e = e;
-    }
-    @Override
-    public int compareTo(Time o){//¿À¸§Â÷¼ø
-        if(this.e==o.e) return this.s-o.s;//°°À¸¸é ½ÃÀÛ½Ã°£µµ ºñ±³ÇØ¶ó
-		else return this.e-o.e;
-    }
-}
