@@ -3,46 +3,58 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-//3.°áÈ¥½Ä
-//¸ÕÀú³¡³ª´Â °ÍºÎÅÍ ÇÑ´Ù ±×´ÙÀ½°Ô Å©°Å³ª °°´Ù
-//³¡³ª´Â½Ã°£ÀÌ °°À¸¸é ½ÃÀÛ½Ã°£µµ ¿À¸§Â÷¼ø
-public class Ex3 {
-	public int solution(ArrayList<Time2> arr){
-		int answer=Integer.MIN_VALUE;
-		Collections.sort(arr);//½Ã°£¼ø Á¤·Ä / e°¡¸ÕÀú³ª¿Í¼­ »©ÁÖ±â
-		int cnt=0;
-		for(Time2 ob : arr){
-			if(ob.state=='s') cnt++;
-			else cnt--;
-			answer=Math.max(answer, cnt);//ÃÖ´ë°ªÀÏ¶§ ¹Ù²Ù±â
-		}
-		return answer;
+//3. ê²°í˜¼ì‹
+
+//ì‹œê°„ ìƒíƒœ
+//ì‹œê°„ ì •ë ¬ ê°™ìœ¼ë©´ ëë¶€í„° ë¹¼ì•¼í•˜ë‹ˆê¹Œ ë¬¸ììˆœ
+class People implements Comparable<People>{
+	
+	int time;
+	char state;
+	
+	public People(int time, char state) {
+		this.time = time;
+		this.state = state;
 	}
 
+	@Override
+	public int compareTo(People o) {
+		if(this.time-o.time==0) {
+			return this.state-o.state;
+		}
+		return this.time-o.time;
+	}
+	
+}
+
+
+public class Ex3 {
 	public static void main(String[] args){
 		Ex3 T = new Ex3();
 		Scanner kb = new Scanner(System.in);
 		int n=kb.nextInt();
-		ArrayList<Time2> arr = new ArrayList<>();
+		ArrayList<People> arr = new ArrayList<>();
 		for(int i=0; i<n; i++){
-			int sT=kb.nextInt();
-			int eT=kb.nextInt();
-			arr.add(new Time2(sT, 's'));//ÂÉ°³¼­ ´ã¾Æ³õ°í
-			arr.add(new Time2(eT, 'e'));
+			int start=kb.nextInt();
+			int end=kb.nextInt();
+			arr.add(new People(start, 's'));
+			arr.add(new People(end, 'e'));
 		}
-		System.out.println(T.solution(arr));
+		
+		//ì •ë ¬, ë‹µ, cntí•„ìš” ì™”ìœ¼ë©´ ++ ê°€ë©´ -- ìµœëŒ€ê°’ì„ ë‹µìœ¼ë¡œ
+		Collections.sort(arr);
+		int answer=0;
+		int cnt=0;
+		for(People people : arr) {
+			if(people.state=='s') {
+				cnt++;
+			}else {
+				cnt--;
+			}
+			answer= Math.max(answer, cnt);
+		}
+		System.out.println(answer);
 	}
 }
-class Time2 implements Comparable<Time2>{
-    public int time;
-	public char state;
-    Time2(int time, char state) {
-        this.time = time;
-        this.state = state;
-    }
-    @Override
-    public int compareTo(Time2 ob){
-        if(this.time==ob.time) return this.state-ob.state;//¿À´Â ½Ã°£°ú °¡´Â½Ã°£ÀÌ °°À¸¸é  e¸¦ ¸ÕÀú »©Áà¾ßÇÔ ±×·¡¾ß Ä«¿îÆ® ¾ÈµÊ
-		else return this.time-ob.time;//½Ã°£ ¿À¸§Â÷¼ø Á¤·Ä
-    }
-}
+
+
