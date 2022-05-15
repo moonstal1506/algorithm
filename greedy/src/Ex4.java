@@ -4,25 +4,27 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-//4.ÃÖ´ë¼öÀÔ½ºÄÉÁÙ
-//Á¦ÀÏ Å«³¯Â¥ºÎÅÍ ³Ö°í ³¯Â¥¸¶´Ù ºñ±³
-public class Ex4 {
-	static int n, max=Integer.MIN_VALUE;
-	public int solution(ArrayList<Lecture> arr){
-		int answer=0;
-		PriorityQueue<Integer> pQ = new PriorityQueue<>(Collections.reverseOrder()); //±âº»Àº ÀÛÀº°ª¿ì¼±ÀÎµ¥ reverseOrderÅ«°ª¿ì¼±
-		Collections.sort(arr);//³¯Â¥ ³»¸²Â÷¼ø
-		int j=0;
-		for(int i=max; i>=1; i--){//Å«³¯Â¥ºÎÅÍ ÀÛ¾ÆÁü
-			for(; j<n; j++){//°­ÀÇ
-				if(arr.get(j).time<i) break;//0,1,2,3,4¹øÂ°°­ÀÇÀÇ ³¯Â¥°¡ 3º¸´Ù ÀÛÀ¸¸é ¸ØÃç¶ó
-				pQ.offer(arr.get(j).money);//³¯Â¥°¡ Å©°Å³ª °°´Ù pq °­ÁÂÀÇ °­ÀÇ·á¸¦ ³Ö´Â´Ù.
-			}
-			if(!pQ.isEmpty()) answer+=pQ.poll();//i³¯Â¥ÀÇ °¡Àå Å« °­ÀÇ·á
-		}
-		return answer;
+//4. ìµœëŒ€ìˆ˜ì…ìŠ¤ì¼€ì¥´( PriorityQueue)
+//ëˆê³¼ ì‹œê°„ ,ì‹œê°„ ë‚´ë¦¼ì°¨ìˆœ
+class Lecture implements Comparable<Lecture>{
+	int money;
+	int date;
+	
+	public Lecture(int money, int date) {
+		super();
+		this.money = money;
+		this.date = date;
 	}
 
+	@Override
+	public int compareTo(Lecture o) {
+		return o.date-this.date;
+	}
+}
+
+public class Ex4 {
+	static int n, max=Integer.MIN_VALUE;
+	
 	public static void main(String[] args){
 		Ex4 T = new Ex4();
 		Scanner kb = new Scanner(System.in);
@@ -32,21 +34,27 @@ public class Ex4 {
 			int m=kb.nextInt();
 			int d=kb.nextInt();
 			arr.add(new Lecture(m, d));
-			if(d>max) max=d;//°¡Àå Å« ³¯Â¥ ±¸ÇÏ±â
+			if(d>max) max=d;
 		}
-		System.out.println(T.solution(arr));
+		
+		//sumí•„ìš” PriorityQueueëˆ ë‚´ë¦¼ì°¨ìˆœ
+		//arrì€ ë‚ ì§œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
+		//ë§ˆì§€ë§‰ ë‚ ë¶€í„° ëŒë©´ì„œ ëˆ ì§‘ì–´ë„£ê¸° ë‚ ì§œ ë³€í• ë•Œ ë©ˆì¶°ì„œ í°ëˆ í•©í•˜ê¸°
+		int sum = 0;
+		PriorityQueue<Integer> q = new PriorityQueue<>(Collections.reverseOrder());
+		Collections.sort(arr);
+		int j=0;
+		for(int i =max;i>=1;i--) {
+			for(;j<n;j++) {
+				if(arr.get(j).date<i) {
+					break;
+				}
+				q.add(arr.get(j).money);
+			}
+			if(!q.isEmpty()) {
+				sum+=q.poll();
+			}
+		}
+		System.out.println(sum);
 	}
-}
-
-class Lecture implements Comparable<Lecture>{
-    public int money;
-	public int time;
-    Lecture(int money, int time) {
-        this.money = money;
-        this.time = time;
-    }
-    @Override
-    public int compareTo(Lecture ob){
-        return ob.time-this.time;//½Ã°£ ³»¸²Â÷¼ø
-    }
 }
