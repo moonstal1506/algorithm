@@ -1,27 +1,30 @@
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.PriorityQueue;
 import java.util.Scanner;
 
-//6.Ä£±¸ÀÎ°¡
+//6. ì¹œêµ¬ì¸ê°€(Uion&Find)
 public class Ex6 {
 	static int[] unf;
-	public static int Find(int v){//vÇĞ»ıÀÇ ÁıÇÕ¹øÈ£¸¦ ¸®ÅÏÇØÁØ´Ù 1À» È£ÃâÇÏ¸é 2¸¦ È£ÃâÇÏ°í 2°¡ 3À» È£Ãâ ´Ù °°Àº ¹øÈ£ ¸®ÅÏ¹ŞÀ½(Ä£±¸ÀÏ °æ¿ì)
-		if(v==unf[v]) return v;//ÀÎµ¦½º ¹øÈ£¿Í ¹è¿­°ª
-		else return unf[v]=Find(unf[v]);//°æ·Î ¾ĞÃà
+	
+	//ì–´ëŠì§‘í•©ì— ì†í•˜ëŠ”ì§€ ì°¾ê¸°
+	//ë²ˆí˜¸ ì§‘í•© ê°™ìœ¼ë©´ ê·¸ëŒ€ë¡œ
+	//ë‹¤ë¥´ë©´ ê·¸ì¹œêµ¬ ë²ˆí˜¸ê»„ë¡œ ì°¾ê¸°
+	public static int Find(int v){
+		if(v==unf[v]) return v;
+		else return unf[v]=Find(unf[v]);
 	}
+	
+	//ì–´ëŠì§‘í•©ì¸ì§€ ì°¾ê³  ë‹¤ë¥´ë©´ ì¹œêµ¬ë§Œë“¤ì–´ì£¼ê¸° aì§‘í•©ì— bê°’ë„£ê¸°
 	public static void Union(int a, int b){
-		int fa=Find(a);//1
-		int fb=Find(b);//2
-		if(fa!=fb) unf[fa]=fb;//1!=2 °°Áö ¾ÊÀ¸¸é °°°Ô ÇØÁÜ unf[1]=2 °°Àº ÁıÇÕÀÎ °É ³ªÅ¸³¿
+		int fa=Find(a);
+		int fb=Find(b);
+		if(fa!=fb) unf[fa]=fb;
 	}
 	public static void main(String[] args){
 		Scanner kb = new Scanner(System.in);
-		int n=kb.nextInt();//ÇĞ»ı¼ö
-		int m=kb.nextInt();//¼ıÀÚ½Ö
-		unf=new int[n+1];//°°Àº ÁıÇÕÀÎÁö ³ªÅ¸³¾ ¹è¿­
-		for(int i=1; i<=n; i++) unf[i]=i;//ÇĞ»ı ³Ö¾îÁÜ
+		int n=kb.nextInt();
+		int m=kb.nextInt();
+		unf=new int[n+1];
+		for(int i=1; i<=n; i++) unf[i]=i;
 		for(int i=1; i<=m; i++){
 			int a=kb.nextInt();
 			int b=kb.nextInt();
