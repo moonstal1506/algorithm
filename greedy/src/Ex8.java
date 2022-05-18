@@ -3,43 +3,9 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-//8.¿ø´õ·£µå ÇÁ¸²
+//ì›ë”ëœë“œ(í”„ë¦¼ : PriorityQueue)
 
-public class Ex8 {
-	public static void main(String[] args){
-		Scanner kb = new Scanner(System.in);
-		int n=kb.nextInt();//Á¤Á¡ ¼ö 
-		int m=kb.nextInt();//Â¦ÀÇ ¼ö
-		ArrayList<ArrayList<Edge3>> graph = new ArrayList<ArrayList<Edge3>>();
-		for(int i=0; i<=n; i++){
-			graph.add(new ArrayList<Edge3>());
-		}
-		int[] ch=new int[n+1];
-		for(int i=0; i<m; i++){
-			int a=kb.nextInt();
-			int b=kb.nextInt();
-			int c=kb.nextInt();
-			graph.get(a).add(new Edge3(b, c));
-			graph.get(b).add(new Edge3(a, c));//¹«¹æÇâÀÌ¶ó b¿¡¼­a·Î °¡´Â °Íµµ
-		}
-		int answer=0;
-		PriorityQueue<Edge3> pQ = new PriorityQueue<>();
-		pQ.offer(new Edge3(1, 0));//1¹øÁ¤Á¡ ºÎÅÍ ½ÃÀÛ
-		while(!pQ.isEmpty()){
-			Edge3 tmp=pQ.poll();
-			int ev=tmp.vex;//µµÂø Á¤Á¡
-			if(ch[ev]==0){//È¸·Î µÇ´Â °Í ¹æÁö Ã¼Å©
-				ch[ev]=1;//Ã¼Å©
-				answer+=tmp.cost;//°£¼± ºñ¿ë
-				for(Edge3 ob : graph.get(ev)){//µµÂøÁ¤Á¡¿¡¼­ »¸±â ev¸¦ µÚÁ®
-					if(ch[ob.vex]==0) pQ.offer(new Edge3(ob.vex, ob.cost));//³ÖÀº°Å ¶Ç³ÖÁö ¸»ÀÚ´Â°É Ã¼Å© ¹æ±İ Áö³ª¿Â°÷
-				}
-			}
-		}
-		System.out.println(answer);
-	}
-}
-
+//ì •ì  ë¹„ìš©, ë¹„ìš©ì˜¤ë¦„ì°¨ìˆœ
 class Edge3 implements Comparable<Edge3>{
     public int vex;
 	public int cost;
@@ -49,6 +15,48 @@ class Edge3 implements Comparable<Edge3>{
     }
     @Override
     public int compareTo(Edge3 ob){
-        return this.cost-ob.cost;//ÃÖ¼Ò°ª ¿ì¼±¼øÀ§
+        return this.cost-ob.cost;
     }
 }
+
+public class Ex8 {
+	public static void main(String[] args){
+		Scanner kb = new Scanner(System.in);
+		int n=kb.nextInt();
+		int m=kb.nextInt();
+		ArrayList<ArrayList<Edge3>> graph = new ArrayList<ArrayList<Edge3>>();
+		for(int i=0; i<=n; i++){
+			graph.add(new ArrayList<Edge3>());
+		}
+		
+		//ì²´í¬ë°°ì—´, ë¬´ë°©í–¥ ê·¸ë˜í”„
+		int[] ch=new int[n+1];
+		for(int i=0; i<m; i++){
+			int a=kb.nextInt();
+			int b=kb.nextInt();
+			int c=kb.nextInt();
+			graph.get(a).add(new Edge3(b, c));
+			graph.get(b).add(new Edge3(a, c));
+		}
+		
+		//pqì— ì—£ì§€ ì •ì 1ë¶€í„° ë¹„ìš©0
+		//ë¹„ì–´ìˆì§€ ì•Šì„ ë•Œê¹Œì§€
+		//ì •ì  ì²´í¬0ì¼ë•Œ ì²´í¬í•˜ê³  ë¹„ìš©í•©í•˜ê³  ê·¸ë‹¤ìŒ ì—£ì§€ì˜ ì •ì ì²´í¬ 0ì´ë©´ pqì— ë„£ì–´ì¤Œ
+		PriorityQueue<Edge3> pQ = new PriorityQueue<>();
+		pQ.offer(new Edge3(1, 0));
+		int answer=0;
+		while(!pQ.isEmpty()){
+			Edge3 tmp=pQ.poll();
+			int ev=tmp.vex;
+			if(ch[ev]==0){
+				ch[ev]=1;
+				answer+=tmp.cost;
+				for(Edge3 ob : graph.get(ev)){
+					if(ch[ob.vex]==0) pQ.offer(new Edge3(ob.vex, ob.cost));
+				}
+			}
+		}
+		System.out.println(answer);
+	}
+}
+
