@@ -3,51 +3,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-//7.¿ø´õ·£µå Å©·ç½ºÄ®
-//°¡ÁßÄ¡ÇÕÀÌ ÃÖ¼Ò·Î ¸¸µé¾î ³»´Â °Í
-//Æ®¸®¿Í ±×·¡ÇÁ Â÷ÀÌ: Æ®¸®´Â È¸·Î°¡ Á¸ÀçÇÏÁö ¾ÊÀ½
-//°¡ÁßÄ¡ ¿À¸§Â÷¼ø Á¤·Ä
-//ÀÛÀº°ª ¼±ÅÃÇØ³ª°¡¸é µÊ
-//°£¼±¿¬°áÇÏ¸é Ä£±¸ ÇÏ³ªÀÇ ÁıÇÕ
-//ÀÌ¹Ì ¿¬°áµÇ¾îÀÖ´ÂÁö È®ÀÎÇØ¾ßÇÔ È¸·Î°¡ µÇ¸é ¾ÈµÊ
-public class Ex7 {
-	static int[] unf;
-	public static int Find(int v){
-		if(v==unf[v]) return v;
-		else return unf[v]=Find(unf[v]);
-	}
-	public static void Union(int a, int b){//µÑÀº Ä£±¸ÀÎµ¥ ´Ù¸¥ °ªÀ» °®°íÀÖÀ¸¸é b°É·Î °°°Ô ÇØÁà 
-		int fa=Find(a);
-		int fb=Find(b);
-		if(fa!=fb) unf[fa]=fb;
-	}
-	public static void main(String[] args){
-		Scanner kb = new Scanner(System.in);
-		int n=kb.nextInt();//µµ½Ã ¼ö
-		int m=kb.nextInt();//°£¼± ¼ö
-		unf=new int[n+1];
-		ArrayList<Edge2> arr=new ArrayList<>();
-		for(int i=1; i<=n; i++) unf[i]=i;
-		for(int i=0; i<m; i++){
-			int a=kb.nextInt();//a¿Íb¿¬°á
-			int b=kb.nextInt();
-			int c=kb.nextInt();//°¡ÁßÄ¡
-			arr.add(new Edge2(a, b, c));
-		}
-		int answer=0;
-		Collections.sort(arr);//Á¤·Ä
-		for(Edge2 ob : arr){//°¡ÁßÄ¡ ÀÛÀº°Í ºÎÅÍ ¼±ÅÃÇØ³ª°¨
-			int fv1=Find(ob.v1);
-			int fv2=Find(ob.v2);
-			if(fv1!=fv2){//³ÊÈñ ÀÌ¹Ì Ä£±¸? Ã³À½ ¸¸³­°Å´Ï±î ´ä¿¡ ³Ö¾îÁÜ
-				answer+=ob.cost;
-				Union(ob.v1, ob.v2);//Ä£±¸¸Î±â
-			}
-		}
-		System.out.println(answer);
-	}
-}
+//7. ì›ë”ëœë“œ(í¬ë£¨ìŠ¤ì¹¼ : Uion&Find)
 
+//ì •ì 2ê°œ ë¹„ìš©ì˜¤ë¦„ì°¨ìˆœ
 class Edge2 implements Comparable<Edge2>{
     public int v1;
 	public int v2;
@@ -59,6 +17,52 @@ class Edge2 implements Comparable<Edge2>{
     }
     @Override
     public int compareTo(Edge2 ob){
-        return this.cost-ob.cost;//¿À¸§Â÷¼øÁ¤·Ä °¡ÁßÄ¡ÇÕ ÃÖ¼Ò ±¸ÇÏ·Á°í
+        return this.cost-ob.cost;
     }
 }
+
+public class Ex7 {
+	static int[] unf;
+	
+	//ì°¾ê¸°
+	public static int Find(int v){
+		if(v==unf[v]) return v;
+		else return unf[v]=Find(unf[v]);
+	}
+	
+	//ì¹œêµ¬ë§Œë“¤ê¸°
+	public static void Union(int a, int b){
+		int fa=Find(a);
+		int fb=Find(b);
+		if(fa!=fb) unf[fa]=fb;
+	}
+	public static void main(String[] args){
+		Scanner kb = new Scanner(System.in);
+		int n=kb.nextInt();
+		int m=kb.nextInt();
+		unf=new int[n+1];
+		ArrayList<Edge2> arr=new ArrayList<>();
+		for(int i=1; i<=n; i++) unf[i]=i;
+		for(int i=0; i<m; i++){
+			int a=kb.nextInt();
+			int b=kb.nextInt();
+			int c=kb.nextInt();
+			arr.add(new Edge2(a, b, c));
+		}
+		int answer=0;
+		
+		//ì •ë ¬
+		Collections.sort(arr);
+		//ëŒë©´ì„œ ì°¾ê³  ë‹¤ë¥´ë©´ ì¹œêµ¬ë§Œë“¤ê¸° íšŒë¡œë§Œë“¤ë©´x
+		for(Edge2 ob : arr){
+			int fv1=Find(ob.v1);
+			int fv2=Find(ob.v2);
+			if(fv1!=fv2){
+				answer+=ob.cost;
+				Union(ob.v1, ob.v2);
+			}
+		}
+		System.out.println(answer);
+	}
+}
+
