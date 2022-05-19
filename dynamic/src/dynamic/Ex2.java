@@ -3,22 +3,19 @@ package dynamic;
 import java.util.Scanner;
 
 
-//2.µ¹´Ù¸® ¾Õ¹®Á¦¶û °°Àºµ¥ µ¹´Ù¸®´Â ´Ù °Ç³Ê´Â°Ô ÇÑ¹ø ´õ °¡¾ßÇÔ
-//µ¿Àû°èÈ¹¹ı ¹®Á¦¸¦ °¡Àå ÀÛ°Ô ¸¸µé¾î È®ÀåµÈ ¹®Á¦¿¡ ¾¸
+//2. ëŒë‹¤ë¦¬ ê±´ë„ˆê¸°
 public class Ex2 {
-	static int[] dy;
-	public int solution(int n){
-		dy[1]=1;
-		dy[2]=2;
-		for(int i=3; i<=n+1; i++) dy[i]=dy[i-2]+dy[i-1];
-		return dy[n+1];
-	}
 
 	public static void main(String[] args){
-		Ex2 T = new Ex2();
 		Scanner kb = new Scanner(System.in);
 		int n=kb.nextInt();
-		dy=new int[n+2];
-		System.out.print(T.solution(n));
+		int[] dy=new int[n+2];
+		dy[1]=1;
+		dy[2]=2;
+		//í•œë²ˆ ë” ê°€ì•¼í•¨
+		for(int i=3; i<=n+1; i++) {
+			dy[i]=dy[i-2]+dy[i-1];
+		}
+		System.out.print(dy[n+1]);
 	}
 }

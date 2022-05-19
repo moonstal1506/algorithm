@@ -3,23 +3,8 @@ package dynamic;
 import java.util.Scanner;
 
 
-//3. ÃÖ´ëºÎºĞÁõ°¡¼ö¿­
+//3. ìµœëŒ€ë¶€ë¶„ì¦ê°€ìˆ˜ì—´(LIS)
 public class Ex3 {
-	static int[] dy;
-	public int solution(int[] arr){
-		int answer=0;
-		dy=new int[arr.length];//ÃÖ´ë¼ö¿­°³¼ö ´ãÀ» ¹è¿­
-		dy[0]=1;
-		for(int i=1; i<arr.length; i++){
-			int max=0;
-			for(int j=i-1; j>=0; j--){
-				if(arr[j]<arr[i] && dy[j]>max) max=dy[j];//µÚ¿¡°Å°¡ Å«¼ıÀÚÀÌ¸é¼­ ÃÖ´ë ¼ö¿­ ¼ö°¡ ¸Æ½ºº¸´Ù Å©¸é ¸Æ½º¿¡ ´ã¾Æ¶ó
-			}
-			dy[i]=max+1;//µÚÀÇ ¼ö ¼ö¿­±æÀÌ 
-			answer=Math.max(answer, dy[i]);
-		}
-		return answer;
-	}
 
 	public static void main(String[] args){
 		Ex3 T = new Ex3();
@@ -29,6 +14,18 @@ public class Ex3 {
 		for(int i=0; i<n; i++){
 			arr[i]=kb.nextInt();
 		}
-		System.out.print(T.solution(arr));
+		int answer=0;
+		int[] dy=new int[arr.length];
+		dy[0]=1;
+		//ë’¤ì— ìˆ«ìê°€ ë” í¬ë©´ì„œ ë§¥ìŠ¤ë³´ë‹¤ í¬ë©´ 1ë”í•´ì„œ ë„£ì–´ì¤Œ
+		for(int i=1; i<arr.length; i++){
+			int max=0;
+			for(int j=i-1; j>=0; j--){
+				if(arr[j]<arr[i] && dy[j]>max) max=dy[j];
+			}
+			dy[i]=max+1;
+			answer=Math.max(answer, dy[i]);
+		}
+		System.out.print(answer);
 	}
 }
