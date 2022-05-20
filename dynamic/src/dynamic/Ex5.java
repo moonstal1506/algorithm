@@ -5,52 +5,51 @@ import java.util.Collections;
 import java.util.Scanner;
 
 
-//4.°¡Àå ³ôÀº Å¾½×±â
+//4. ê°€ì¥ ë†’ì€ íƒ‘ ìŒ“ê¸°(LIS ì‘ìš©)
+
+//ë²½ëŒ ë†’ì´,ë„“ì´,ë¬´ê²Œ  ë„“ì´ ë‚´ë¦¼ì°¨ìˆœ
+class Brick implements Comparable<Brick>{
+    public int s, h, w;
+    Brick(int s, int h, int w) {
+		this.s = s;
+        this.h = h;
+        this.w = w;
+    }
+    @Override
+    public int compareTo(Brick o){
+        return o.s-this.s;
+    }
+}
+
 public class Ex5 {
-	static int[] dy;
-	public int solution(ArrayList<Brick> arr){
-		int answer=0;
-		Collections.sort(arr);//³ĞÀÌ ³»¸²Â÷¼ø Á¤·ÄµÇ¾îÀÖÀ¸´Ï±î ÀÌÁ¦ ¹«°Ô¸¸ ½Å°æ¾²¸éµÊ
-		dy[0]=arr.get(0).h;//Ã¹¹øÂ°²¨ ³ôÀÌ·Î ÃÊ±âÈ­
-		answer=dy[0];//´äµµ Ã¹¹øÂ°·Î
-		for(int i=1; i<arr.size(); i++){
-			int max_h=0;
-			for(int j=i-1; j>=0; j--){//¾Õ¿¡²¨
-				if(arr.get(j).w > arr.get(i).w && dy[j]>max_h){//¹«°Ô°¡ ´õ Å©°í ¸Æ½º³ôÀÌº¸´Ù Å©¸é ¸Æ½º ¹Ù²ãÁÖ°í
-					max_h=dy[j];
-				}
-			}
-			dy[i]=max_h+arr.get(i).h;//´ÙÀ½ ³ôÀÌ´Â ÃÖ´ë°ª+ÇöÀç ³ôÀÌ
-			answer=Math.max(answer, dy[i]);//Áö±İ ÃÖ´ë°ªÀÎ°¡ ºñ±³
-		}
-		return answer;
-	}
 
 	public static void main(String[] args){
-		Ex5 T = new Ex5();
 		Scanner kb = new Scanner(System.in);
 		int n=kb.nextInt();
 		ArrayList<Brick> arr=new ArrayList<>();
-		dy=new int[n];
+		int[] dy=new int[n];
 		for(int i=0; i<n; i++){
 			int a=kb.nextInt();
 			int b=kb.nextInt();
 			int c=kb.nextInt();
 			arr.add(new Brick(a, b, c));
 		}
-		System.out.print(T.solution(arr));
+		
+		//ì •ë ¬ ì²«ë²ˆì§¸ ë†’ì´ë¡œ ì´ˆê¸°í™” 
+		//ë¬´ê²Œê°€ ì•ì—êº¼ê°€ ë” ì»¤ì•¼í•¨ ë§¥ìŠ¤ë³´ë‹¤ í°ê°’  ë†’ì´ ë”í•´ì¤Œ ë‹µê³¼ ë¹„êµ
+		Collections.sort(arr);
+		dy[0]=arr.get(0).h;
+		int answer=dy[0];
+		for(int i=1; i<arr.size(); i++){
+			int max_h=0;
+			for(int j=i-1; j>=0; j--){//ï¿½Õ¿ï¿½ï¿½ï¿½
+				if(arr.get(j).w > arr.get(i).w && dy[j]>max_h){//ï¿½ï¿½ï¿½Ô°ï¿½ ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½Æ½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½Æ½ï¿½ ï¿½Ù²ï¿½ï¿½Ö°ï¿½
+					max_h=dy[j];
+				}
+			}
+			dy[i]=max_h+arr.get(i).h;//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Ö´ë°ª+ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			answer=Math.max(answer, dy[i]);//ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ë°ªï¿½Î°ï¿½ ï¿½ï¿½
+		}
+		System.out.print(answer);
 	}
-}
-
-class Brick implements Comparable<Brick>{
-    public int s, h, w;
-    Brick(int s, int h, int w) {
-		this.s = s;//³Ğ
-        this.h = h;//³ô
-        this.w = w;//¹«°Ô
-    }
-    @Override
-    public int compareTo(Brick o){
-        return o.s-this.s;//³ĞÀÌ³»¸²Â÷¼ø
-    }
 }
