@@ -4,31 +4,26 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 
-//5.µ¿Àü±³È¯ ³À»ö  
+//5. ë™ì „êµí™˜(ëƒ…ìƒ‰ ì•Œê³ ë¦¬ì¦˜)
 public class Ex4 {
-	static int n, m;//µ¿Àü°³¼ö ,°Å½º¸§µ·
-	static int[] dy;
-	public int solution(int[] coin){
-		Arrays.fill(dy, Integer.MAX_VALUE);//ÃÖ¼Ò °³¼ö ±¸ÇÒ °Å´Ï±î ÃÖ´ë°ªÀ¸·Î ÃÊ±âÈ­
-		dy[0]=0;
-		for(int i=0; i<n; i++){
-			for(int j=coin[i]; j<=m; j++){//µ¿Àü °ªÀ¸·Î µ¹¾Æ 1·Î ¸î°³ ÇÊ¿ä ¼¼ÆÃÇÏ°í 3µé¾î°¥ ¼ö ÀÖ´ÂÁö 5µé¾î°¥ ¼ö ÀÖ´ÂÁö
-				dy[j]=Math.min(dy[j], dy[j-coin[i]]+1);//±âÁ¸°ªº¸´Ù ÀÛÀ¸¸é ¹Ù²ãÁÙ°Çµ¥ °Å½º¸§µ·À» µ¿ÀüÀ¸·Î »« ¼ıÀÚÀÇ µ¿Àü°³¼ö¿¡+1
-			}
-		}
-		return dy[m];//ÇÊ¿äÇÑ °Å½º¸§µ·ÀÇ ÃÖ¼Ò µ¿Àü°³¼ö
-	}
 
 	public static void main(String[] args){
 		Ex4 T = new Ex4();
 		Scanner kb = new Scanner(System.in);
-		n=kb.nextInt();
+		int n=kb.nextInt();
 		int[] arr=new int[n];
-		for(int i=0; i<n; i++){//µ¿Àü Á¾·ù ´ã±â
+		for(int i=0; i<n; i++){
 			arr[i]=kb.nextInt();
 		}
-		m=kb.nextInt();
-		dy=new int[m+1];
-		System.out.print(T.solution(arr));
+		int m=kb.nextInt();
+		int[] dy=new int[m+1];
+		Arrays.fill(dy, Integer.MAX_VALUE);
+		dy[0]=0;
+		for(int i=0; i<n; i++){
+			for(int j=arr[i]; j<=m; j++){
+				dy[j]=Math.min(dy[j], dy[j-arr[i]]+1);
+			}
+		}
+		System.out.print(dy[m]);
 	}
 }
