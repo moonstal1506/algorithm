@@ -1,22 +1,20 @@
 package dynamic;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
-
-//6.ÃÖ´ëÁ¡¼ö ±¸ÇÏ±â
+//6. ìµœëŒ€ì ìˆ˜ êµ¬í•˜ê¸°(ëƒ…ìƒ‰ì•Œê³ ë¦¬ì¦˜)
 public class Ex6 {
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
-		int n=kb.nextInt();//¹®Á¦¼ö
-		int m=kb.nextInt();//Á¦ÇÑ½Ã°£
-		int[] dy=new int[m+1];
-		for(int i=0; i<n; i++){
-			int ps=kb.nextInt();//Á¡¼ö
-			int pt=kb.nextInt();//Çª´Â½Ã°£
-			for(int j=m; j>=pt; j--){//¾Õ¹®Á¦¿Í ´Ù¸£°Ô Áßº¹µÇ¸é ¾ÈµÈ´Ù µÚ¿¡¼­ºÎÅÍ °è»ê/ Á¦ÇÑ½Ã°£ÀÌ Çª´Â½Ã°£º¸´Ù ¸¹°Å³ª °°À»¶§±îÁö
-				dy[j]=Math.max(dy[j], dy[j-pt]+ps);//ÃÖ´ëÁ¡¼ö ±¸ÇÏ±â ½Ã°£»©°í ±×¶§ÀÇ Á¡¼ö¿¡ +ps
+		int n = kb.nextInt();
+		int m = kb.nextInt();
+		int[] dy = new int[m + 1];
+		for (int i = 0; i < n; i++) {
+			int ps = kb.nextInt();
+			int pt = kb.nextInt();
+			// ë’¤ì—ì„œ ë¶€í„°, ì¤‘ë³µí•´ì„œ í‘¸ëŠ” ê²ƒ ë°©ì§€
+			for (int j = m; j >= pt; j--) {
+				dy[j] = Math.max(dy[j], dy[j - pt] + ps);
 			}
 		}
 		System.out.print(dy[m]);
